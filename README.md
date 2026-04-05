@@ -4,13 +4,29 @@
 
 ## 使用方法
 
-### 必要パッケージのインストール (任意)
+### 1. リポジトリを複製
 
-テンプレートに含まれるパッケージ以外のものを使用したい場合は適宜インストールすること。以下に例を載せる。
+LFSを使っているせいでtemplateリポジトリにできない！複製する必要がある
 
-- Cinemachine
+1. `git clone --bare [template-repository-url]`
+2. `cd [template-repository]`
+3. `git lfs fetch --all`
+4. `git push --mirror [new-repository-url]`
+5. `git lfs push --all [new-repository-url]`
+6. `cd ..`
+7. `rm -rf unity-template.git`
 
-### 環境設定からAutoSaveを有効化
+### 2. 新プロジェクト用に修正
+
+- 名前の修正
+- 必要パッケージの追加インストール
+    - Cinemachine
+- 環境設定からAutoSaveを有効化
+- `README.md`, `AGENTS.md` を更新
+
+### 3. ビルド前
+
+- unityroomのHmac Keyを入力
 
 ---
 
@@ -104,4 +120,4 @@ flowchart TB
 - UniTaskのメソッドは可能な限り有効なCancellationTokenを渡す/渡せるようにする
 - R3の購読管理はCompositionDisposableを用いて確実に行う
 - 過剰なnullチェックやフォールバックは避ける。システムがエラーで止まらないことよりも、適切にエラーで停止しバグに気付ける方が望ましい
-- テストはUnity Test Runnerを用い、テストコードはScripts/Testsに配置してください
+- テストはUnity Test Runnerを用い、テストコードはScripts/Tests以下に配置する
