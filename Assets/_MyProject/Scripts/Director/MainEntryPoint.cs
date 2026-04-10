@@ -33,9 +33,9 @@ namespace MyProject.Director
             sceneDirectors.Add(SceneType.Result, resultSceneDirector);
         }
 
-        public async UniTask StartAsync(CancellationToken cts)
+        public async UniTask StartAsync(CancellationToken ct)
         {
-            await ResetSceneAsync(cts);
+            await ResetSceneAsync(ct);
         }
 
         public void Tick()
@@ -52,11 +52,14 @@ namespace MyProject.Director
             cts.Dispose();
         }
 
-        async UniTask ResetSceneAsync(CancellationToken cts)
+        async UniTask ResetSceneAsync(CancellationToken ct)
         {
             disposables.Clear();
 
-            await UniTask.WhenAll(sceneDirectors.Values.Select(d => d.InitializeAsync(cts)));
+            foreach (var director in sceneDirectors.Values)
+            {
+                director.Initialize();
+            }
 
             sceneCore.CurrentScene.Pairwise().Subscribe(pair =>
             {
@@ -72,7 +75,7 @@ namespace MyProject.Director
             // 初期シーンを起動
             var initialScene = sceneCore.CurrentScene.CurrentValue;
             var initialSceneDirector = GetSceneDirector(initialScene);
-            await initialSceneDirector.InitialEnterAsync(cts);
+            await initialSceneDirector.InitialEnterAsync(ct);
         }
 
         async UniTask HandleSceneTransition(SceneType from, SceneType to)

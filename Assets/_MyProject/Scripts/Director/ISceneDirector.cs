@@ -8,35 +8,36 @@ namespace MyProject.Director
         /// <summary>
         /// シーンの初期化処理を行う。
         /// </summary>
-        UniTask InitializeAsync(CancellationToken cts);
+        void Initialize();
         /// <summary>
-        /// 全シーン初期化後、最初のシーンに遷移するときに呼び出される。
-        /// アニメーションはせず、すぐにこのシーンが始まるようにする。
+        /// 全シーン初期化後、最初のシーンに遷移するときに呼び出される処理。
+        /// アニメーションはせず、
+        /// すぐにこのシーンが始まるようにする。
         /// </summary>
-        UniTask InitialEnterAsync(CancellationToken cts);
+        UniTask InitialEnterAsync(CancellationToken ct);
         /// <summary>
-        /// シーンチェンジでこのシーンに遷移する前に呼び出される。
+        /// シーンチェンジでこのシーンに遷移する前に呼び出される処理。
         /// 遷移元のBeforeExitAsyncの後に呼び出される。
         /// </summary>
-        UniTask BeforeEnterAsync(CancellationToken cts);
+        UniTask BeforeEnterAsync(CancellationToken ct);
         /// <summary>
-        /// シーンチェンジでこのシーンに遷移するときに呼び出される。
+        /// シーンチェンジでこのシーンに遷移するときに呼び出される処理。
         /// 遷移元のExitAsyncと同時に呼び出される。
         /// </summary>
-        UniTask EnterAsync(CancellationToken cts);
+        UniTask EnterAsync(CancellationToken ct);
         /// <summary>
-        /// このシーンが選ばれている間、毎フレーム呼び出される。
+        /// このシーンが選ばれている間、毎フレーム呼び出される処理。
         /// </summary>
         void Tick();
         /// <summary>
-        /// シーンチェンジでこのシーンから遷移する前に呼び出される。
+        /// シーンチェンジでこのシーンから遷移する前に呼び出される処理。
         /// 遷移先のBeforeEnterAsyncよりも先に呼び出される。
         /// </summary>
-        UniTask BeforeExitAsync(CancellationToken cts);
+        UniTask BeforeExitAsync(CancellationToken ct);
         /// <summary>
-        /// シーンチェンジでこのシーンから遷移するときに呼び出される。
+        /// シーンチェンジでこのシーンから遷移するときに呼び出される処理。
         /// 遷移先のEnterAsyncと同時に呼び出される。
         /// </summary>
-        UniTask ExitAsync(CancellationToken cts);
+        UniTask ExitAsync(CancellationToken ct);
     }
 }

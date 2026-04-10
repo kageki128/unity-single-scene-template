@@ -1,42 +1,51 @@
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using MyProject.Actor;
 
 namespace MyProject.Director
 {
     public class GameSceneDirector : ISceneDirector
     {
-        public UniTask InitializeAsync(CancellationToken cts)
+        readonly GameActorHub gameActorHub;
+
+        public GameSceneDirector(GameActorHub gameActorHub)
         {
-            return UniTask.CompletedTask;
+            this.gameActorHub = gameActorHub;
         }
 
-        public UniTask InitialEnterAsync(CancellationToken cts)
+        public void Initialize()
         {
-            return UniTask.CompletedTask;
+            gameActorHub.Initialize();
         }
 
-        public UniTask BeforeEnterAsync(CancellationToken cts)
+        public async UniTask InitialEnterAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            await gameActorHub.InitialShowAsync(ct);
         }
 
-        public UniTask EnterAsync(CancellationToken cts)
+        public async UniTask BeforeEnterAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            await UniTask.CompletedTask;
+        }
+
+        public async UniTask EnterAsync(CancellationToken ct)
+        {
+            await gameActorHub.ShowAsync(ct);
         }
 
         public void Tick()
         {
         }
 
-        public UniTask BeforeExitAsync(CancellationToken cts)
+        public async UniTask BeforeExitAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            await UniTask.CompletedTask;
         }
 
-        public UniTask ExitAsync(CancellationToken cts)
+        public async UniTask ExitAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            await gameActorHub.HideAsync(ct);
         }
     }
 }

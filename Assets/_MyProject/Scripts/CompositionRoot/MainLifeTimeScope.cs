@@ -1,3 +1,4 @@
+using MyProject.Actor;
 using MyProject.Core;
 using MyProject.Director;
 using UnityEngine;
@@ -9,6 +10,10 @@ namespace MyProject.CompositionRoot
     public class MainLifeTimeScope : LifetimeScope
     {
         [Header("Actor")]
+        [SerializeField] TitleActorHub titleActorHub;
+        [SerializeField] SelectActorHub selectActorHub;
+        [SerializeField] GameActorHub gameActorHub;
+        [SerializeField] ResultActorHub resultActorHub;
         [Header("Config")]
         [SerializeField] GameConfigSO gameConfig;
 
@@ -23,11 +28,15 @@ namespace MyProject.CompositionRoot
         void RegisterCore(IContainerBuilder builder)
         {
             builder.Register<SceneCore>(Lifetime.Singleton);
+            builder.RegisterInstance(gameConfig);
         }
 
         void RegisterActor(IContainerBuilder builder)
         {
-            
+            builder.RegisterInstance(titleActorHub);
+            builder.RegisterInstance(selectActorHub);
+            builder.RegisterInstance(gameActorHub);
+            builder.RegisterInstance(resultActorHub);
         }
 
         void RegisterDirector(IContainerBuilder builder)

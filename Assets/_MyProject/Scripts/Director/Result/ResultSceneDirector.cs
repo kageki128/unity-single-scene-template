@@ -1,42 +1,50 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using MyProject.Actor;
 
 namespace MyProject.Director
 {
     public class ResultSceneDirector : ISceneDirector
     {
-        public UniTask InitializeAsync(CancellationToken cts)
+        readonly ResultActorHub resultActorHub;
+
+        public ResultSceneDirector(ResultActorHub resultActorHub)
+        {
+            this.resultActorHub = resultActorHub;
+        }
+
+        public void Initialize()
+        {
+            resultActorHub.Initialize();
+        }
+
+        public UniTask InitialEnterAsync(CancellationToken ct)
+        {
+            return resultActorHub.InitialShowAsync(ct);
+        }
+
+        public UniTask BeforeEnterAsync(CancellationToken ct)
         {
             return UniTask.CompletedTask;
         }
 
-        public UniTask BeforeEnterAsync(CancellationToken cts)
+        public UniTask EnterAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
-        }
-
-        public UniTask EnterAsync(CancellationToken cts)
-        {
-            return UniTask.CompletedTask;
-        }
-
-        public UniTask InitialEnterAsync(CancellationToken cts)
-        {
-            return UniTask.CompletedTask;
+            return resultActorHub.ShowAsync(ct);
         }
 
         public void Tick()
         {
         }
 
-        public UniTask BeforeExitAsync(CancellationToken cts)
+        public UniTask BeforeExitAsync(CancellationToken ct)
         {
             return UniTask.CompletedTask;
         }
 
-        public UniTask ExitAsync(CancellationToken cts)
+        public UniTask ExitAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            return resultActorHub.HideAsync(ct);
         }
     }
 }
