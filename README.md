@@ -9,7 +9,7 @@
 LFSを使っているせいでtemplateリポジトリにできない！複製する必要がある
 
 1. `git clone --bare [template-repository-url]`
-2. `cd [template-repository]`
+2. `cd [template-directory]`
 3. `git lfs fetch --all`
 4. `git push --mirror [new-repository-url]`
 5. `git lfs push --all [new-repository-url]`
@@ -36,7 +36,7 @@ LFSを使っているせいでtemplateリポジトリにできない！複製す
 
 [ここにプロジェクトの説明を入力]
 
-## 概要
+## ゲーム概要
 
 [ここにゲームの詳しい説明を入力]
 
@@ -119,5 +119,5 @@ flowchart TB
 - privateフィールドの接頭辞にアンダースコアをつけない
 - UniTaskのメソッドは可能な限り有効なCancellationTokenを渡す/渡せるようにする
 - R3の購読管理はCompositionDisposableを用いて確実に行う
-- 過剰なnullチェックやフォールバックは避ける。システムがエラーで止まらないことよりも、適切にエラーで停止しバグに気付ける方が望ましい
+- 過剰なnullチェックやフォールバックは避ける。エラーで止まってほしい場面では無理にシステムを動かそうとせず、適切に停止しバグに気付ける方が望ましい
 - テストはUnity Test Runnerを用い、テストコードはScripts/Tests以下に配置する
