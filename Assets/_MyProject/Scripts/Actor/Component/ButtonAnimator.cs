@@ -113,6 +113,7 @@ namespace MyProject.Actor
         Color[] textBaseColors = Array.Empty<Color>();
         Color[] graphicBaseColors = Array.Empty<Color>();
 
+        bool isPlaying;
         bool isHovered;
         bool isPressed;
 
@@ -145,6 +146,24 @@ namespace MyProject.Actor
 
         void OnEnable()
         {
+            isPlaying = false;
+            isHovered = false;
+            isPressed = false;
+
+            CancelAllMotions();
+            ApplyBaseVisuals();
+        }
+
+        void OnDisable()
+        {
+            isPlaying = false;
+            CancelAllMotions();
+            ApplyBaseVisuals();
+        }
+
+        public void Play()
+        {
+            isPlaying = true;
             isHovered = false;
             isPressed = false;
 
@@ -153,8 +172,12 @@ namespace MyProject.Actor
             TryPlayIdleLoop();
         }
 
-        void OnDisable()
+        public void Stop()
         {
+            isPlaying = false;
+            isHovered = false;
+            isPressed = false;
+
             CancelAllMotions();
             ApplyBaseVisuals();
         }
@@ -163,6 +186,11 @@ namespace MyProject.Actor
         {
             pointerObserver.PointerEntered.Subscribe(_ =>
             {
+                if (!isPlaying)
+                {
+                    return;
+                }
+
                 isHovered = true;
                 if (isPressed)
                 {
@@ -174,6 +202,11 @@ namespace MyProject.Actor
 
             pointerObserver.PointerExited.Subscribe(_ =>
             {
+                if (!isPlaying)
+                {
+                    return;
+                }
+
                 isHovered = false;
                 if (isPressed)
                 {
@@ -185,12 +218,22 @@ namespace MyProject.Actor
 
             pointerObserver.PointerDown.Subscribe(_ =>
             {
+                if (!isPlaying)
+                {
+                    return;
+                }
+
                 isPressed = true;
                 PlayState(VisualState.Pressed);
             }).AddTo(this);
 
             pointerObserver.PointerUp.Subscribe(_ =>
             {
+                if (!isPlaying)
+                {
+                    return;
+                }
+
                 if (!isPressed)
                 {
                     return;
@@ -305,6 +348,11 @@ namespace MyProject.Actor
 
         void TryPlayIdleLoop()
         {
+            if (!isPlaying)
+            {
+                return;
+            }
+
             if (!idle.Enabled)
             {
                 return;

@@ -42,7 +42,7 @@ namespace MyProject.Actor
             [SerializeField, Min(0f)] float multiplier = 1f;
 
             public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [SerializeField] Ease ease = Ease.InCubic;
         }
 
         [Serializable]
