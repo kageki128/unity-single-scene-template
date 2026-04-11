@@ -32,10 +32,10 @@ namespace MyProject.Actor
             [SerializeField] bool enabled = true;
 
             public float ScaleAmplitude => scaleAmplitude;
-            [SerializeField, Min(0f)] float scaleAmplitude = 0.05f;
+            [SerializeField, Min(0f)] float scaleAmplitude = 0.04f;
 
             public float Duration => duration;
-            [SerializeField, Min(0.01f)] float duration = 2f;
+            [SerializeField, Min(0.01f)] float duration = 2.4f;
         }
 
         [Serializable]
@@ -61,7 +61,7 @@ namespace MyProject.Actor
         class PressSettings
         {
             public Vector2 ScaleMultiplier => scaleMultiplier;
-            [SerializeField] Vector2 scaleMultiplier = new(1.1f, 0.9f);
+            [SerializeField] Vector2 scaleMultiplier = new(1.14f, 0.94f);
 
             public float Duration => duration;
             [SerializeField, Min(0.01f)] float duration = 0.06f;

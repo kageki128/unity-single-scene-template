@@ -565,8 +565,8 @@ MonoBehaviour:
   graphicTargets: []
   idle:
     enabled: 1
-    scaleAmplitude: 0.05
-    duration: 2
+    scaleAmplitude: 0.04
+    duration: 2.4
   hover:
     scaleMultiplier: 1.08
     duration: 0.08
@@ -580,7 +580,7 @@ MonoBehaviour:
       amount: 0.08
       customColor: {r: 0.92, g: 0.92, b: 0.92, a: 1}
   press:
-    scaleMultiplier: {x: 1.1, y: 0.9}
+    scaleMultiplier: {x: 1.14, y: 0.94}
     duration: 0.06
     ease: 8
     spriteColor:
