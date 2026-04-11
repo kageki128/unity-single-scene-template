@@ -7,6 +7,6 @@ namespace MyProject.Actor
     {
         public Observable<Unit> ToSelectButtonClicked => ToSelectButton.Clicked;
 
-        [SerializeField] StandardButton ToSelectButton;
+        [SerializeField] StandardButtonActor ToSelectButton;
     }
 }

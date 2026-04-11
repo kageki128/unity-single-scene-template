@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb9b0e795ecdfb244b191e58e5275252, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardButton
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardButtonActor
 --- !u!114 &858934389
 MonoBehaviour:
   m_ObjectHideFlags: 0

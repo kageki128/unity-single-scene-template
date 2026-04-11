@@ -8,7 +8,7 @@ namespace MyProject.Actor
     [RequireComponent(typeof(PointerEventObserver))]
     [RequireComponent(typeof(ButtonAnimator))]
     [RequireComponent(typeof(StandardActorTransitionAnimator))]
-    public class StandardButton : ActorBase
+    public class StandardButtonActor : ActorBase
     {
         public Observable<Unit> Clicked => pointerEventObserver.Clicked.Select(_ => Unit.Default);
 
