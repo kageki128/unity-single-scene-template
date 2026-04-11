@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace MyProject.Actor
 {
     [DisallowMultipleComponent]
-    public class StandardActorAnimator : MonoBehaviour
+    public class StandardActorTransitionAnimator : MonoBehaviour
     {
 
         [Serializable]
