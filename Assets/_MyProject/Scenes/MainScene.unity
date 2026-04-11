@@ -444,8 +444,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706006539}
-  - component: {fileID: 706006540}
   - component: {fileID: 706006541}
+  - component: {fileID: 706006540}
   m_Layer: 0
   m_Name: GameScene
   m_TagString: Untagged
@@ -477,12 +477,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 706006538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd91423626e678240bc141f41d5e1050, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  initialShowAnimations: []
-  showAnimations: []
-  hideAnimations: []
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.GameActorHub
 --- !u!114 &706006541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,9 +489,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 706006538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd91423626e678240bc141f41d5e1050, type: 3}
+  m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.GameActorHub
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
+  actorAnimations: []
 --- !u!1 &1007905484
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,9 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  initialShowAnimations: []
-  showAnimations: []
-  hideAnimations: []
+  actorAnimations: []
 --- !u!1 &1316483770
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,9 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  initialShowAnimations: []
-  showAnimations: []
-  hideAnimations: []
+  actorAnimations: []
 --- !u!1 &1356142520
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +695,7 @@ MonoBehaviour:
   autoInjectGameObjects: []
   titleActorHub: {fileID: 1007905486}
   selectActorHub: {fileID: 2142052735}
-  gameActorHub: {fileID: 706006541}
+  gameActorHub: {fileID: 706006540}
   resultActorHub: {fileID: 1316483772}
   gameConfig: {fileID: 11400000, guid: 9415f96bd8527e641b288f2147ddd50b, type: 2}
 --- !u!1 &1976873102
@@ -793,9 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  initialShowAnimations: []
-  showAnimations: []
-  hideAnimations: []
+  actorAnimations: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
