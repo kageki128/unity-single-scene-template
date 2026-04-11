@@ -119,5 +119,4 @@ flowchart TB
 - privateフィールドの接頭辞にアンダースコアをつけない
 - UniTaskのメソッドは可能な限り有効なCancellationTokenを渡す/渡せるようにする
 - R3の購読管理はCompositionDisposableを用いて確実に行う
-- 過剰なnullチェックやフォールバックは避ける。エラーで止まってほしい場面では無理にシステムを動かそうとせず、適切に停止しバグに気付ける方が望ましい
 - テストはUnity Test Runnerを用い、テストコードはScripts/Tests以下に配置する

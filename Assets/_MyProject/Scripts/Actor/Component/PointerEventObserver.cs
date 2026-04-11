@@ -8,6 +8,7 @@ namespace MyProject.Actor
     /// マウスポインターのイベントを観測し、各種イベントを発行するクラス。
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
+    [DisallowMultipleComponent]
     public class PointerEventObserver : MonoBehaviour,
         IPointerClickHandler,
         IScrollHandler,
@@ -95,102 +96,72 @@ namespace MyProject.Actor
         readonly Subject<PointerEventData> dropped = new();
 
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
-        {
-            clicked.OnNext(eventData);
-        }
+            => Publish(clicked, eventData);
 
         void IScrollHandler.OnScroll(PointerEventData eventData)
-        {
-            scrolled.OnNext(eventData);
-        }
+            => Publish(scrolled, eventData);
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-        {
-            pointerEntered.OnNext(eventData);
-        }
+            => Publish(pointerEntered, eventData);
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-        {
-            pointerExited.OnNext(eventData);
-        }
+            => Publish(pointerExited, eventData);
 
         void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
-        {
-            pointerDown.OnNext(eventData);
-        }
+            => Publish(pointerDown, eventData);
 
         void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
-        {
-            pointerUp.OnNext(eventData);
-        }
+            => Publish(pointerUp, eventData);
 
         void IInitializePotentialDragHandler.OnInitializePotentialDrag(PointerEventData eventData)
-        {
-            initializePotentialDrag.OnNext(eventData);
-        }
+            => Publish(initializePotentialDrag, eventData);
 
         void IPointerMoveHandler.OnPointerMove(PointerEventData eventData)
-        {
-            pointerMoved.OnNext(eventData);
-        }
+            => Publish(pointerMoved, eventData);
 
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
-        {
-            beginDrag.OnNext(eventData);
-        }
+            => Publish(beginDrag, eventData);
 
         void IDragHandler.OnDrag(PointerEventData eventData)
-        {
-            dragged.OnNext(eventData);
-        }
+            => Publish(dragged, eventData);
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
-        {
-            endDrag.OnNext(eventData);
-        }
+            => Publish(endDrag, eventData);
 
         void IDropHandler.OnDrop(PointerEventData eventData)
-        {
-            dropped.OnNext(eventData);
-        }
+            => Publish(dropped, eventData);
 
         void OnDestroy()
         {
-            clicked.OnCompleted();
-            clicked.Dispose();
+            CompleteAndDispose
+            (
+                clicked,
+                scrolled,
+                pointerEntered,
+                pointerExited,
+                pointerDown,
+                pointerUp,
+                initializePotentialDrag,
+                pointerMoved,
+                beginDrag,
+                dragged,
+                endDrag,
+                dropped
+            );
+        }
 
-            scrolled.OnCompleted();
-            scrolled.Dispose();
+        static void Publish(Subject<PointerEventData> subject, PointerEventData eventData)
+        {
+            subject.OnNext(eventData);
+        }
 
-            pointerEntered.OnCompleted();
-            pointerEntered.Dispose();
-
-            pointerExited.OnCompleted();
-            pointerExited.Dispose();
-
-            pointerDown.OnCompleted();
-            pointerDown.Dispose();
-
-            pointerUp.OnCompleted();
-            pointerUp.Dispose();
-
-            initializePotentialDrag.OnCompleted();
-            initializePotentialDrag.Dispose();
-
-            pointerMoved.OnCompleted();
-            pointerMoved.Dispose();
-
-            beginDrag.OnCompleted();
-            beginDrag.Dispose();
-
-            dragged.OnCompleted();
-            dragged.Dispose();
-
-            endDrag.OnCompleted();
-            endDrag.Dispose();
-
-            dropped.OnCompleted();
-            dropped.Dispose();
+        static void CompleteAndDispose(params Subject<PointerEventData>[] subjects)
+        {
+            foreach (var subject in subjects)
+            {
+                subject.OnCompleted();
+                subject.Dispose();
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MyProject.Actor
     public class ActorAnimationTimeline : ActorBase
     {
         [Serializable]
-        public class TimedActorAnimation
+        class TimedActorAnimation
         {
             public ActorBase Actor => actor;
             [SerializeField] ActorBase actor;

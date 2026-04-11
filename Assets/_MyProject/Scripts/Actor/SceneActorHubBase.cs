@@ -9,6 +9,9 @@ namespace MyProject.Actor
     {
         protected ActorAnimationTimeline animationTimeline;
 
+        // InitialShowを個別に設定するか
+        [SerializeField] bool useIndividualInitialShow = false;
+
         public override void Initialize()
         {
             animationTimeline = GetComponent<ActorAnimationTimeline>();
@@ -19,8 +22,16 @@ namespace MyProject.Actor
 
         public override async UniTask InitialShowAsync(CancellationToken ct)
         {
-            gameObject.SetActive(true);
-            await animationTimeline.InitialShowAsync(ct);
+            if (useIndividualInitialShow)
+            {
+                gameObject.SetActive(true);
+                await animationTimeline.InitialShowAsync(ct);
+                
+            }
+            else
+            {
+                await ShowAsync(ct);
+            }
         }
 
         public override async UniTask ShowAsync(CancellationToken ct)

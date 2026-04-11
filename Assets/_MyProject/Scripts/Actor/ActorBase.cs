@@ -13,37 +13,23 @@ namespace MyProject.Actor
         /// <summary>
         /// 初期化処理を行う。
         /// </summary>
-        public virtual void Initialize()
-        {
-            gameObject.SetActive(false);
-        }
+        public abstract void Initialize();
 
         /// <summary>
         /// ゲームの最初のシーンとして表示されるときの表示処理。
+        /// OverrideしなければShowAsyncと同じ処理を行う。
         /// 多くの場合、すぐに表示されることが望ましいだろう。
         /// </summary>
-        public virtual UniTask InitialShowAsync(CancellationToken ct)
-        {
-            gameObject.SetActive(true);
-            return UniTask.CompletedTask;
-        }
+        public virtual UniTask InitialShowAsync(CancellationToken ct) => ShowAsync(ct);
 
         /// <summary>
         /// 表示処理。
         /// </summary>
-        public virtual UniTask ShowAsync(CancellationToken ct)
-        {
-            gameObject.SetActive(true);
-            return UniTask.CompletedTask;
-        }
+        public abstract UniTask ShowAsync(CancellationToken ct);
 
         /// <summary>
         /// 非表示処理。
         /// </summary>
-        public virtual UniTask HideAsync(CancellationToken ct)
-        {
-            gameObject.SetActive(false);
-            return UniTask.CompletedTask;
-        }
+        public abstract UniTask HideAsync(CancellationToken ct);
     }
 }
