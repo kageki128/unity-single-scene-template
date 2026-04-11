@@ -1,83 +1,38 @@
 # LitMotion Settings Pattern
 
-## なぜ `SerializableMotionSettings` を使うか
+## 1. 設定の持ち方
 
-- `SerializableMotionSettings<TValue, TOptions>` はInspector編集可能な `MotionSettings`。
-- ActorごとのTweenパラメータをコードから分離し、演出調整をノーコードで進められる。
-- `LMotion.Create(settings)` で `StartValue/EndValue/Duration/Ease/Delay/Loops/LoopType/Scheduler` を一括適用できる。
+- `SerializableMotionSettings<TValue, TOptions>` は「Inspector調整が必要な場合」の手段。
+- 固定値で十分なら `LMotion.Create(start, end, duration)` + `With...` の直書きでよい。
+- Inspector公開は最小限にし、調整しない項目はコード側に閉じる。
 
-## OutCubic を既定値にする実装パターン
-
-### パターンA: フィールド初期化で既定値を注入する
+## 2. 再生の基本形
 
 ```csharp
-[SerializeField] SerializableMotionSettings<float, NoOptions> showScale = new()
-{
-    StartValue = 0f,
-    EndValue = 1f,
-    Duration = 0.2f,
-    Ease = Ease.OutCubic,
-    DelayType = DelayType.FirstLoop,
-    LoopType = LoopType.Restart,
-    Loops = 1,
-    SkipValuesDuringDelay = true,
-    ImmediateBind = true
-};
+var handle = LMotion.Create(settings)
+    .BindToLocalScaleXYZ(transform)
+    .AddTo(this);
+await handle.ToUniTask(ct);
 ```
 
-この方式を標準とする。  
-理由: 既定値が明示され、Inspectorで上書き可能だから。
+- `AddTo(this)` でオブジェクト破棄時にモーションを自動的に管理する。
+- `ToUniTask(ct)` で待機とキャンセルを連携する。
 
-### パターンB: `Reset` で既定値を再注入する
+## 3. キャンセルと再入
 
-```csharp
-void Reset()
-{
-    showScale = showScale with { Ease = Ease.OutCubic };
-}
-```
+- 再入する可能性がある処理は、同種 `MotionHandle` をフィールドで保持する。
+- 新規再生前に `TryCancel()` して、古い再生を停止してから作り直す。
+- 挙動が必要な場合だけ `CancelBehavior` と `cancelAwaitOnMotionCanceled` を明示する。
 
-`Reset` は「初期値再構築」に使う。  
-実行時に常時上書きするとInspector編集の意味がなくなるため、`OnValidate`で毎回強制しない。
+## 4. 複数モーションの組み方
 
-## `ToUniTask` のキャンセル挙動
+- 同時再生: `UniTask.WhenAll`
+- 順次再生: `LSequence`
+- `LSequence` に追加するのは「未再生かつ有限ループ」のモーションのみ。
 
-`ToUniTask` は `CancellationToken` を受け取れる。標準は `ToUniTask(ct)` を使う。
+## 5. 最小チェックリスト
 
-- `await handle.ToUniTask(ct)`
-  - tokenキャンセル時: Motionを`Cancel`して待機をキャンセルする。
-- `await handle.ToUniTask(CancelBehavior.Complete, ct)`
-  - tokenキャンセル時: Motionを`Complete`して待機をキャンセルする。
-- `await handle.ToUniTask(CancelBehavior.Cancel, false, ct)`
-  - Motion側が`Cancel()`されても待機をキャンセルしない。
-
-Actorの `Show/Hide` は通常 `ToUniTask(ct)` を使う。  
-画面遷移中断時に不要なTweenを引きずらないため。
-
-## 再入時のリスタート再生パターン
-
-「再生メソッドが再び呼ばれたら、中断して先頭から再生」が必要な場合は、`MotionHandle` をフィールドで保持して差し替える。
-
-```csharp
-MotionHandle showHandle;
-
-UniTask PlayShowAsync(CancellationToken ct)
-{
-    showHandle.TryCancel();
-    showHandle = LMotion.Create(showSettings)
-        .BindToLocalScaleXYZ(transform)
-        .AddTo(this);
-
-    return showHandle.ToUniTask(CancelBehavior.Cancel, false, ct);
-}
-```
-
-- `TryCancel()` で前回再生を止める。
-- 新しいHandleを再代入して再生し直す。
-- `cancelAwaitOnMotionCanceled` に `false` を渡すことで、再入による`Cancel`を例外扱いしない。
-
-## Sequence運用メモ
-
-- `LSequence` に追加できるのは「未再生Handle」のみ。
-- 再生中Handleや無限ループTweenを追加すると例外になる。
-- 順次演出が必要な場合だけ `LSequence` を使い、単純な同時再生は `UniTask.WhenAll` を優先する。
+- `LMotion.Create` 起点になっているか。
+- `Bind` の戻り値を `MotionHandle` として扱っているか。
+- `CancellationToken` を待機へ渡しているか。
+- 不要な項目までInspector公開していないか。
