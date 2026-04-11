@@ -1,12 +1,16 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyProject.Actor;
+using R3;
 
 namespace MyProject.Director
 {
-    public class ResultSceneDirector : ISceneDirector
+    public class ResultSceneDirector : ISceneDirector, IDisposable
     {
         readonly ResultActorHub resultActorHub;
+
+        readonly CompositeDisposable disposables = new();
 
         public ResultSceneDirector(ResultActorHub resultActorHub)
         {
@@ -18,33 +22,46 @@ namespace MyProject.Director
             resultActorHub.Initialize();
         }
 
-        public UniTask InitialEnterAsync(CancellationToken ct)
+        public async UniTask BeforeEnterAsync(CancellationToken ct)
         {
-            return resultActorHub.InitialShowAsync(ct);
+            await UniTask.CompletedTask;
         }
 
-        public UniTask BeforeEnterAsync(CancellationToken ct)
+        public async UniTask InitialEnterAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            await resultActorHub.InitialShowAsync(ct);
+            HandleEnter();
         }
-
-        public UniTask EnterAsync(CancellationToken ct)
+        
+        public async UniTask EnterAsync(CancellationToken ct)
         {
-            return resultActorHub.ShowAsync(ct);
+            await resultActorHub.ShowAsync(ct);
+            HandleEnter();
         }
 
         public void Tick()
         {
         }
 
-        public UniTask BeforeExitAsync(CancellationToken ct)
+        public async UniTask BeforeExitAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            disposables.Clear();
+            await UniTask.CompletedTask;
         }
 
-        public UniTask ExitAsync(CancellationToken ct)
+        public async UniTask ExitAsync(CancellationToken ct)
         {
-            return resultActorHub.HideAsync(ct);
+            await resultActorHub.HideAsync(ct);
+        }
+
+        public void Dispose()
+        {
+            disposables.Dispose();
+        }
+
+        void HandleEnter()
+        {
+            disposables.Clear();
         }
     }
 }

@@ -16,8 +16,6 @@ namespace MyProject.Actor
         {
             pointerEventObserver = GetComponent<PointerEventObserver>();
             gameObject.SetActive(false);
-
-            Clicked.Subscribe(_ => HandleClicked()).AddTo(this);
         }
 
         public override async UniTask ShowAsync(CancellationToken ct)
@@ -28,11 +26,6 @@ namespace MyProject.Actor
         public override async UniTask HideAsync(CancellationToken ct)
         {
             gameObject.SetActive(false);
-        }
-
-        void HandleClicked()
-        {
-            Debug.Log("Button clicked!");
         }
     }
 }
