@@ -151,7 +151,6 @@ Temporary Items
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
-.utmp/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -223,9 +222,6 @@ mono_crash.*
 *.unitypackage
 *.unitypackage.meta
 *.app
-
-# Crashlytics generated file
-crashlytics-build.properties
 
 # TestRunner generated files
 InitTestScene*.unity*
