@@ -12,16 +12,20 @@
 
 ### 1. リポジトリを複製
 
-LFSを使っているせいでtemplateリポジトリにできない！リポジトリを複製して使用する必要がある。
+テンプレートをコピーしたあと、`git` 履歴を消して新しい履歴で開始する。
 
-1. `git clone --bare [template-repository-url]`
-2. `cd [template-directory]`
-3. `git lfs fetch --all`
-4. `git push --mirror [new-repository-url]`
-5. `git lfs push --all [new-repository-url]`
-6. `cd ..`
-7. `rm -rf [template-directory]`
-    - (windows: `rm -Recurse -Force unity-single-scene-template.git`)
+1. `git clone [template-repository-url]`
+2. `cd [new-project-directory]`
+3. `git lfs pull`
+4. `.git` ディレクトリを削除
+    - macOS / Linux: `rm -rf .git`
+    - Windows (PowerShell): `Remove-Item -Recurse -Force .git`
+5. `git init`
+6. `git remote add origin [new-repository-url]`
+7. `git add .`
+8. `git commit -m "Initial commit from template"`
+9. `git branch -M main`
+10. `git push -u origin main`
 
 ### 2. 新プロジェクト用に修正
 
