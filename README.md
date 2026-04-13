@@ -4,9 +4,13 @@
 
 ## 使用方法
 
+### 0. 必要拡張機能のインストール
+
+- EditorConfigの拡張機能をインストール
+
 ### 1. リポジトリを複製
 
-LFSを使っているせいでtemplateリポジトリにできない！複製する必要がある
+LFSを使っているせいでtemplateリポジトリにできない！リポジトリを複製して使用する必要がある。
 
 1. `git clone --bare [template-repository-url]`
 2. `cd [template-directory]`
@@ -82,6 +86,8 @@ MonoBehaviourを継承する。従来のViewに相当し、2DモデルやuGUIな
 - Actor
 - Factory
     - あるActorを生成することに責任を持つオブジェクト
+- Component
+    - Actorにアタッチして使用する汎用コンポーネント
 
 ### Director層
 
