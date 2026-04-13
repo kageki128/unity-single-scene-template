@@ -1,8 +1,0 @@
-﻿<Solution>
-  <Project Path="MyProject.Director.csproj" />
-  <Project Path="VHierarchy.csproj" />
-  <Project Path="MyProject.Actor.csproj" />
-  <Project Path="MyProject.Core.csproj" />
-  <Project Path="MyProject.CompositionRoot.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
-</Solution>
