@@ -2431,8 +2431,8 @@ MonoBehaviour:
   seAudioSource: {fileID: 1091782873}
   bgmAudioSource: {fileID: 341459405}
   audioMixer: {fileID: 24100000, guid: 8c41a9b04d5628a4d89801de06ba4650, type: 2}
-  bgmVolumeParameter: Bgm
-  seVolumeParameter: Se
+  bgmVolumeParameter: BGMVolume
+  seVolumeParameter: SEVolume
   clipCooldownSeconds: 0.033
 --- !u!1 &1505967681
 GameObject:
