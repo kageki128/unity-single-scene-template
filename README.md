@@ -20,7 +20,8 @@ LFSを使っているせいでtemplateリポジトリにできない！リポジ
 4. `git push --mirror [new-repository-url]`
 5. `git lfs push --all [new-repository-url]`
 6. `cd ..`
-7. `rm -rf unity-template.git`
+7. `rm -rf [template-directory]`
+    - (windows: `rm -Recurse -Force unity-single-scene-template.git`)
 
 ### 2. 新プロジェクト用に修正
 
