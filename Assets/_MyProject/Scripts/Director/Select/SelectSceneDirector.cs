@@ -17,9 +17,11 @@ namespace MyProject.Director
             this.selectActorHub = selectActorHub;
         }
 
-        public void Initialize()
+        public async UniTask InitializeAsync(CancellationToken ct)
         {
+            ct.ThrowIfCancellationRequested();
             selectActorHub.Initialize();
+            await UniTask.CompletedTask;
         }
 
         public async UniTask BeforeEnterAsync(CancellationToken ct)

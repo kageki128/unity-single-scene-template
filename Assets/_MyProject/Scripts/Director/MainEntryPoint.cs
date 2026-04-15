@@ -64,7 +64,7 @@ namespace MyProject.Director
 
             foreach (var director in sceneDirectors.Values)
             {
-                director.Initialize();
+                await director.InitializeAsync(ct);
             }
 
             sceneCore.CurrentScene.Pairwise().Subscribe(pair =>

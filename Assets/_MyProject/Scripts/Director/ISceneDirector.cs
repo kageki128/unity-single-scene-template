@@ -8,7 +8,7 @@ namespace MyProject.Director
         /// <summary>
         /// シーンの初期化処理を行う。
         /// </summary>
-        void Initialize();
+        UniTask InitializeAsync(CancellationToken ct);
         /// <summary>
         /// 全シーン初期化後、最初のシーンに遷移するときに呼び出される処理。
         /// アニメーションはせず、
