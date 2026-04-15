@@ -64,12 +64,12 @@ namespace MyProject.Director
             sceneCore.CurrentScene.Pairwise().Subscribe(pair =>
             {
                 var (from, to) = pair;
-                HandleSceneTransition(from, to).Forget();
+                HandleSceneTransitionAsync(from, to).Forget();
             }).AddTo(disposables);
 
             sceneCore.SceneReload.Subscribe(scene =>
             {
-                HandleSceneTransition(scene, scene).Forget();
+                HandleSceneTransitionAsync(scene, scene).Forget();
             }).AddTo(disposables);
 
             // 初期シーンを起動
@@ -79,7 +79,7 @@ namespace MyProject.Director
             await initialSceneDirector.InitialEnterAsync(ct);
         }
 
-        async UniTask HandleSceneTransition(SceneType from, SceneType to)
+        async UniTask HandleSceneTransitionAsync(SceneType from, SceneType to)
         {
             var fromDirector = GetSceneDirector(from);
             var toDirector = GetSceneDirector(to);
@@ -100,7 +100,7 @@ namespace MyProject.Director
                 await ResetSceneAsync(cts.Token);
 
                 throw new InvalidOperationException($"Scene transition failed from {from} to {to}. Scene has been reset.", ex);
-                
+
             }
             finally
             {
