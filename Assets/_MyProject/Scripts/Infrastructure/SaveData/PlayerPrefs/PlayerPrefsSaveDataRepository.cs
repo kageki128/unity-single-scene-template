@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyProject.Core;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace MyProject.Infrastructure
 {
@@ -14,12 +15,11 @@ namespace MyProject.Infrastructure
         {
             ct.ThrowIfCancellationRequested();
 
-            var jsonData = PlayerPrefsSaveData.FromCore(saveData);
-            var json = JsonUtility.ToJson(jsonData);
+            var json = JsonConvert.SerializeObject(saveData);
             PlayerPrefs.SetString(SaveDataKey, json);
             PlayerPrefs.Save();
 
-            Debug.Log($"[PlayerPrefsSaveDataRepository] Saved data: {json}");
+            Debug.Log($"[PlayerPrefsSaveDataRepository] Saved data. key={SaveDataKey}, length={json.Length}");
 
             return UniTask.CompletedTask;
         }
@@ -34,15 +34,15 @@ namespace MyProject.Infrastructure
             }
 
             var json = PlayerPrefs.GetString(SaveDataKey);
-            var jsonData = JsonUtility.FromJson<PlayerPrefsSaveData>(json);
-            if (jsonData == null)
+            var saveData = JsonConvert.DeserializeObject<SaveDataCore>(json);
+            if (saveData == null)
             {
                 throw new InvalidOperationException($"Failed to deserialize save data. key={SaveDataKey}");
             }
 
-            Debug.Log($"[PlayerPrefsSaveDataRepository] Loaded data: {json}");
+            Debug.Log($"[PlayerPrefsSaveDataRepository] Loaded data. key={SaveDataKey}, length={json.Length}");
 
-            return UniTask.FromResult(jsonData.ToCore());
+            return UniTask.FromResult(saveData);
         }
     }
 }

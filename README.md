@@ -60,6 +60,7 @@ made from [Unity Single Scene Template](https://github.com/kageki128/unity-singl
 
 - TextMeshPro
 - Addressables
+- Newtonsoft Json
 
 ### 外部ライブラリ
 
