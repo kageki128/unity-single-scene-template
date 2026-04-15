@@ -4,6 +4,7 @@ using LitMotion;
 using R3;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MyProject.Actor
@@ -15,78 +16,78 @@ namespace MyProject.Actor
         [Serializable]
         class ColorRuleSettings
         {
-            public ColorRule Rule => rule;
-            [SerializeField] ColorRule rule = ColorRule.Darken;
+            [field: SerializeField, FormerlySerializedAs("rule")]
+            public ColorRule Rule { get; private set; } = ColorRule.Darken;
 
-            public float Amount => amount;
-            [SerializeField, Min(0f)] float amount = 0.08f;
+            [field: SerializeField, FormerlySerializedAs("amount"), Min(0f)]
+            public float Amount { get; private set; } = 0.08f;
 
-            public Color CustomColor => customColor;
-            [SerializeField] Color customColor = new(0.92f, 0.92f, 0.92f, 1f);
+            [field: SerializeField, FormerlySerializedAs("customColor")]
+            public Color CustomColor { get; private set; } = new(0.92f, 0.92f, 0.92f, 1f);
         }
 
         [Serializable]
         class IdleSettings
         {
-            public bool Enabled => enabled;
-            [SerializeField] bool enabled = true;
+            [field: SerializeField, FormerlySerializedAs("enabled")]
+            public bool Enabled { get; private set; } = true;
 
-            public float ScaleAmplitude => scaleAmplitude;
-            [SerializeField, Min(0f)] float scaleAmplitude = 0.04f;
+            [field: SerializeField, FormerlySerializedAs("scaleAmplitude"), Min(0f)]
+            public float ScaleAmplitude { get; private set; } = 0.04f;
 
-            public float Duration => duration;
-            [SerializeField, Min(0.01f)] float duration = 2.4f;
+            [field: SerializeField, FormerlySerializedAs("duration"), Min(0.01f)]
+            public float Duration { get; private set; } = 2.4f;
         }
 
         [Serializable]
         class HoverSettings
         {
-            public float ScaleMultiplier => scaleMultiplier;
-            [SerializeField, Min(1f)] float scaleMultiplier = 1.08f;
+            [field: SerializeField, FormerlySerializedAs("scaleMultiplier"), Min(1f)]
+            public float ScaleMultiplier { get; private set; } = 1.08f;
 
-            public float Duration => duration;
-            [SerializeField, Min(0.01f)] float duration = 0.08f;
+            [field: SerializeField, FormerlySerializedAs("duration"), Min(0.01f)]
+            public float Duration { get; private set; } = 0.08f;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
 
-            public ColorRuleSettings SpriteColor => spriteColor;
-            [SerializeField] ColorRuleSettings spriteColor = new();
+            [field: SerializeField, FormerlySerializedAs("spriteColor")]
+            public ColorRuleSettings SpriteColor { get; private set; } = new();
 
-            public ColorRuleSettings TextColor => textColor;
-            [SerializeField] ColorRuleSettings textColor = new();
+            [field: SerializeField, FormerlySerializedAs("textColor")]
+            public ColorRuleSettings TextColor { get; private set; } = new();
         }
 
         [Serializable]
         class PressSettings
         {
-            public Vector2 ScaleMultiplier => scaleMultiplier;
-            [SerializeField] Vector2 scaleMultiplier = new(1.14f, 0.94f);
+            [field: SerializeField, FormerlySerializedAs("scaleMultiplier")]
+            public Vector2 ScaleMultiplier { get; private set; } = new(1.14f, 0.94f);
 
-            public float Duration => duration;
-            [SerializeField, Min(0.01f)] float duration = 0.06f;
+            [field: SerializeField, FormerlySerializedAs("duration"), Min(0.01f)]
+            public float Duration { get; private set; } = 0.06f;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
 
-            public ColorRuleSettings SpriteColor => spriteColor;
-            [SerializeField] ColorRuleSettings spriteColor = new();
+            [field: SerializeField, FormerlySerializedAs("spriteColor")]
+            public ColorRuleSettings SpriteColor { get; private set; } = new();
 
-            public ColorRuleSettings TextColor => textColor;
-            [SerializeField] ColorRuleSettings textColor = new();
+            [field: SerializeField, FormerlySerializedAs("textColor")]
+            public ColorRuleSettings TextColor { get; private set; } = new();
         }
 
         [Serializable]
         class ReleaseSettings
         {
-            public Vector2 OvershootScaleMultiplier => overshootScaleMultiplier;
-            [SerializeField] Vector2 overshootScaleMultiplier = new(0.96f, 1.04f);
+            [field: SerializeField, FormerlySerializedAs("overshootScaleMultiplier")]
+            public Vector2 OvershootScaleMultiplier { get; private set; } = new(0.96f, 1.04f);
 
-            public float Duration => duration;
-            [SerializeField, Min(0.01f)] float duration = 0.12f;
+            [field: SerializeField, FormerlySerializedAs("duration"), Min(0.01f)]
+            public float Duration { get; private set; } = 0.12f;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Header("References")]

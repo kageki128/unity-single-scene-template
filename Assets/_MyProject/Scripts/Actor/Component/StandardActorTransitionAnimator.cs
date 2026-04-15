@@ -4,6 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MyProject.Actor
@@ -15,66 +16,66 @@ namespace MyProject.Actor
         [Serializable]
         class MoveSettings
         {
-            public float Distance => distance;
-            [SerializeField, Min(0f)] float distance = 3f;
+            [field: SerializeField, FormerlySerializedAs("distance"), Min(0f)]
+            public float Distance { get; private set; } = 3f;
 
-            public float AngleDegrees => angleDegrees;
-            [SerializeField] float angleDegrees = 0f;
+            [field: SerializeField, FormerlySerializedAs("angleDegrees")]
+            public float AngleDegrees { get; private set; } = 0f;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class RotationSettings
         {
-            public float AngleDegrees => angleDegrees;
-            [SerializeField] float angleDegrees = 0f;
+            [field: SerializeField, FormerlySerializedAs("angleDegrees")]
+            public float AngleDegrees { get; private set; } = 0f;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class ScaleSettings
         {
-            public float Multiplier => multiplier;
-            [SerializeField, Min(0f)] float multiplier = 1f;
+            [field: SerializeField, FormerlySerializedAs("multiplier"), Min(0f)]
+            public float Multiplier { get; private set; } = 1f;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class FadeSettings
         {
-            public bool IsFade => isFade;
-            [SerializeField] bool isFade = true;
+            [field: SerializeField, FormerlySerializedAs("isFade")]
+            public bool IsFade { get; private set; } = true;
 
-            public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.OutCubic;
+            [field: SerializeField, FormerlySerializedAs("ease")]
+            public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class PhaseSettings
         {
-            public float DurationSeconds => durationSeconds;
-            [SerializeField, Min(0f)] float durationSeconds = 0.3f;
+            [field: SerializeField, FormerlySerializedAs("durationSeconds"), Min(0f)]
+            public float DurationSeconds { get; private set; } = 0.3f;
 
-            public bool UseCanvasGroupForFade => useCanvasGroupForFade;
-            [SerializeField] bool useCanvasGroupForFade = true;
+            [field: SerializeField, FormerlySerializedAs("useCanvasGroupForFade")]
+            public bool UseCanvasGroupForFade { get; private set; } = true;
 
-            public MoveSettings Move => move;
-            [SerializeField] MoveSettings move = new();
+            [field: SerializeField, FormerlySerializedAs("move")]
+            public MoveSettings Move { get; private set; } = new();
 
-            public RotationSettings Rotation => rotation;
-            [SerializeField] RotationSettings rotation = new();
+            [field: SerializeField, FormerlySerializedAs("rotation")]
+            public RotationSettings Rotation { get; private set; } = new();
 
-            public ScaleSettings Scale => scale;
-            [SerializeField] ScaleSettings scale = new();
+            [field: SerializeField, FormerlySerializedAs("scale")]
+            public ScaleSettings Scale { get; private set; } = new();
 
-            public FadeSettings Fade => fade;
-            [SerializeField] FadeSettings fade = new();
+            [field: SerializeField, FormerlySerializedAs("fade")]
+            public FadeSettings Fade { get; private set; } = new();
         }
 
         [Header("Initial Show")]

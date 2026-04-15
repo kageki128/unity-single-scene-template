@@ -210,53 +210,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
   initialShowSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   showSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   hideSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
 --- !u!1 &341459403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,14 +1147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
   actorAnimations:
-  - actor: {fileID: 248223899}
-    initialShowStartSeconds: 0
-    showStartSeconds: 0
-    hideStartSeconds: 0
-  - actor: {fileID: 858934388}
-    initialShowStartSeconds: 0
-    showStartSeconds: 0
-    hideStartSeconds: 0
+  - <Actor>k__BackingField: {fileID: 248223899}
+    <InitialShowStartSeconds>k__BackingField: 0
+    <ShowStartSeconds>k__BackingField: 0
+    <HideStartSeconds>k__BackingField: 0
+  - <Actor>k__BackingField: {fileID: 858934388}
+    <InitialShowStartSeconds>k__BackingField: 0
+    <ShowStartSeconds>k__BackingField: 0
+    <HideStartSeconds>k__BackingField: 0
 --- !u!1 &858934383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,37 +1209,37 @@ MonoBehaviour:
   textTargets: []
   graphicTargets: []
   idle:
-    enabled: 1
-    scaleAmplitude: 0.04
-    duration: 2.4
+    <Enabled>k__BackingField: 1
+    <ScaleAmplitude>k__BackingField: 0.04
+    <Duration>k__BackingField: 2.4
   hover:
-    scaleMultiplier: 1.08
-    duration: 0.08
-    ease: 8
-    spriteColor:
-      rule: 0
-      amount: 0.08
-      customColor: {r: 0.92, g: 0.92, b: 0.92, a: 1}
-    textColor:
-      rule: 0
-      amount: 0.08
-      customColor: {r: 0.92, g: 0.92, b: 0.92, a: 1}
+    <ScaleMultiplier>k__BackingField: 1.08
+    <Duration>k__BackingField: 0.08
+    <Ease>k__BackingField: 8
+    <SpriteColor>k__BackingField:
+      <Rule>k__BackingField: 0
+      <Amount>k__BackingField: 0.08
+      <CustomColor>k__BackingField: {r: 0.92, g: 0.92, b: 0.92, a: 1}
+    <TextColor>k__BackingField:
+      <Rule>k__BackingField: 0
+      <Amount>k__BackingField: 0.08
+      <CustomColor>k__BackingField: {r: 0.92, g: 0.92, b: 0.92, a: 1}
   press:
-    scaleMultiplier: {x: 1.14, y: 0.94}
-    duration: 0.06
-    ease: 8
-    spriteColor:
-      rule: 0
-      amount: 0.08
-      customColor: {r: 0.92, g: 0.92, b: 0.92, a: 1}
-    textColor:
-      rule: 0
-      amount: 0.08
-      customColor: {r: 0.92, g: 0.92, b: 0.92, a: 1}
+    <ScaleMultiplier>k__BackingField: {x: 1.14, y: 0.94}
+    <Duration>k__BackingField: 0.06
+    <Ease>k__BackingField: 8
+    <SpriteColor>k__BackingField:
+      <Rule>k__BackingField: 0
+      <Amount>k__BackingField: 0.08
+      <CustomColor>k__BackingField: {r: 0.92, g: 0.92, b: 0.92, a: 1}
+    <TextColor>k__BackingField:
+      <Rule>k__BackingField: 0
+      <Amount>k__BackingField: 0.08
+      <CustomColor>k__BackingField: {r: 0.92, g: 0.92, b: 0.92, a: 1}
   release:
-    overshootScaleMultiplier: {x: 0.96, y: 1.04}
-    duration: 0.12
-    ease: 8
+    <OvershootScaleMultiplier>k__BackingField: {x: 0.96, y: 1.04}
+    <Duration>k__BackingField: 0.12
+    <Ease>k__BackingField: 8
 --- !u!114 &858934386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,53 +1323,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
   initialShowSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   showSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   hideSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
 --- !u!1 &924839714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,10 +1611,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
   actorAnimations:
-  - actor: {fileID: 1708320702}
-    initialShowStartSeconds: 0
-    showStartSeconds: 1
-    hideStartSeconds: 0
+  - <Actor>k__BackingField: {fileID: 1708320702}
+    <InitialShowStartSeconds>k__BackingField: 0
+    <ShowStartSeconds>k__BackingField: 1
+    <HideStartSeconds>k__BackingField: 0
 --- !u!1 &1024991090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,53 +1934,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
   initialShowSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   showSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   hideSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
 --- !u!1 &1091782871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,53 +2270,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
   initialShowSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   showSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   hideSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
 --- !u!1 &1316483770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,10 +2377,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
   actorAnimations:
-  - actor: {fileID: 1311617135}
-    initialShowStartSeconds: 0
-    showStartSeconds: 0
-    hideStartSeconds: 0
+  - <Actor>k__BackingField: {fileID: 1311617135}
+    <InitialShowStartSeconds>k__BackingField: 0
+    <ShowStartSeconds>k__BackingField: 0
+    <HideStartSeconds>k__BackingField: 0
 --- !u!1 &1356142520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,53 +2842,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
   initialShowSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   showSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
   hideSettings:
-    durationSeconds: 0.3
-    useCanvasGroupForFade: 1
-    move:
-      distance: 3
-      angleDegrees: 0
-      ease: 8
-    rotation:
-      angleDegrees: 0
-      ease: 8
-    scale:
-      multiplier: 1
-      ease: 8
-    fade:
-      isFade: 1
-      ease: 8
+    <DurationSeconds>k__BackingField: 0.3
+    <UseCanvasGroupForFade>k__BackingField: 1
+    <Move>k__BackingField:
+      <Distance>k__BackingField: 3
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Rotation>k__BackingField:
+      <AngleDegrees>k__BackingField: 0
+      <Ease>k__BackingField: 8
+    <Scale>k__BackingField:
+      <Multiplier>k__BackingField: 1
+      <Ease>k__BackingField: 8
+    <Fade>k__BackingField:
+      <IsFade>k__BackingField: 1
+      <Ease>k__BackingField: 8
 --- !u!114 &1708320702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2995,10 +2995,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
   actorAnimations:
-  - actor: {fileID: 1072198187}
-    initialShowStartSeconds: 0
-    showStartSeconds: 0
-    hideStartSeconds: 0
+  - <Actor>k__BackingField: {fileID: 1072198187}
+    <InitialShowStartSeconds>k__BackingField: 0
+    <ShowStartSeconds>k__BackingField: 0
+    <HideStartSeconds>k__BackingField: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
