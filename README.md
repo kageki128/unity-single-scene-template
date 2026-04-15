@@ -33,6 +33,7 @@
 - 必要パッケージの追加インストール
     - Cinemachine
 - 環境設定からAutoSaveを有効化
+- リザルトやセーブデータを定義し、Infrastructure層の実装を修正
 - `README.md`, `AGENTS.md` を更新
 
 ### 3. ビルド前

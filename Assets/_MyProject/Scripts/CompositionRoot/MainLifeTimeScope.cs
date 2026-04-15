@@ -1,6 +1,7 @@
 using MyProject.Actor;
 using MyProject.Core;
 using MyProject.Director;
+using MyProject.Infrastructure;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -51,7 +52,10 @@ namespace MyProject.CompositionRoot
 
         void RegisterInfrastructure(IContainerBuilder builder)
         {
-
+            builder.Register<PlayerPrefsSaveDataRepository>(Lifetime.Singleton)
+                .As<ISaveDataRepository>();
+            builder.Register<UnityroomRankingRegisterer>(Lifetime.Singleton)
+                .As<IRankingRegisterer>();
         }
     }
 }
