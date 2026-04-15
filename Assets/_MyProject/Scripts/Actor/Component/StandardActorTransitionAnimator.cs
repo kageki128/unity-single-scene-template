@@ -32,7 +32,7 @@ namespace MyProject.Actor
             [SerializeField] bool isFade = true;
 
             public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.InCubic;
+            [SerializeField] Ease ease = Ease.OutCubic;
         }
 
         [Serializable]
@@ -42,7 +42,7 @@ namespace MyProject.Actor
             [SerializeField, Min(0f)] float multiplier = 1f;
 
             public Ease Ease => ease;
-            [SerializeField] Ease ease = Ease.InCubic;
+            [SerializeField] Ease ease = Ease.OutCubic;
         }
 
         [Serializable]
@@ -108,7 +108,7 @@ namespace MyProject.Actor
         public UniTask HideAsync(CancellationToken ct) =>
              PlayPhaseAsync(hideSettings, PhaseType.Hide, ct);
 
-        
+
 
         UniTask PlayPhaseAsync(PhaseSettings settings, PhaseType phaseType, CancellationToken ct)
         {
@@ -274,7 +274,7 @@ namespace MyProject.Actor
             public float BaseAlpha { get; }
 
             readonly Action<float> writeAlpha;
-            
+
             public FadeTarget(Func<bool> isAlive, Action<float> writeAlpha, float baseAlpha)
             {
                 IsAlive = isAlive;

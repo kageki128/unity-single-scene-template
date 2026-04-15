@@ -218,10 +218,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   showSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -231,10 +231,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   hideSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -244,10 +244,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
 --- !u!1 &341459403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,10 +1322,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   showSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -1335,10 +1335,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   hideSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -1348,10 +1348,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
 --- !u!1 &924839714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,10 +1924,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   showSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -1937,10 +1937,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   hideSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -1950,10 +1950,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
 --- !u!1 &1091782871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,10 +2251,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   showSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -2264,10 +2264,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   hideSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -2277,10 +2277,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
 --- !u!1 &1316483770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,10 +2814,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   showSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -2827,10 +2827,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
   hideSettings:
     durationSeconds: 0.3
     useCanvasGroupForFade: 1
@@ -2840,10 +2840,10 @@ MonoBehaviour:
       ease: 8
     fade:
       isFade: 1
-      ease: 7
+      ease: 8
     scale:
       multiplier: 1
-      ease: 7
+      ease: 8
 --- !u!114 &1708320702
 MonoBehaviour:
   m_ObjectHideFlags: 0

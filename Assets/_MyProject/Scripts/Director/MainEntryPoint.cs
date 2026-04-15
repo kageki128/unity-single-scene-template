@@ -12,6 +12,7 @@ namespace MyProject.Director
     {
         readonly SceneCore sceneCore;
 
+        readonly RootDirector rootDirector;
         readonly Dictionary<SceneType, ISceneDirector> sceneDirectors = new();
 
         readonly CompositeDisposable disposables = new();
@@ -20,6 +21,7 @@ namespace MyProject.Director
         public MainEntryPoint
         (
             SceneCore sceneCore,
+            RootDirector rootDirector,
             TitleSceneDirector titleSceneDirector,
             SelectSceneDirector selectSceneDirector,
             GameSceneDirector gameSceneDirector,
@@ -27,6 +29,7 @@ namespace MyProject.Director
         )
         {
             this.sceneCore = sceneCore;
+            this.rootDirector = rootDirector;
             sceneDirectors.Add(SceneType.Title, titleSceneDirector);
             sceneDirectors.Add(SceneType.Select, selectSceneDirector);
             sceneDirectors.Add(SceneType.Game, gameSceneDirector);
@@ -35,11 +38,14 @@ namespace MyProject.Director
 
         public async UniTask StartAsync(CancellationToken ct)
         {
+            await rootDirector.InitializeAsync(ct);
             await ResetSceneAsync(ct);
         }
 
         public void Tick()
         {
+            rootDirector.Tick();
+
             var currentScene = sceneCore.CurrentScene.CurrentValue;
             var director = GetSceneDirector(currentScene);
             director.Tick();

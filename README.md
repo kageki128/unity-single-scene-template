@@ -45,6 +45,8 @@
 
 # [ここにプロジェクト名を入力]
 
+made from [Unity Single Scene Template](https://github.com/kageki128/unity-single-scene-template)
+
 [ここにプロジェクトの説明を入力]
 
 ## ゲーム概要

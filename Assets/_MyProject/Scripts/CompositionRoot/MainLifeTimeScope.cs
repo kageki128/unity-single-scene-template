@@ -42,6 +42,7 @@ namespace MyProject.CompositionRoot
         void RegisterDirector(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<MainEntryPoint>(Lifetime.Singleton);
+            builder.Register<RootDirector>(Lifetime.Singleton);
             builder.Register<TitleSceneDirector>(Lifetime.Singleton);
             builder.Register<SelectSceneDirector>(Lifetime.Singleton);
             builder.Register<GameSceneDirector>(Lifetime.Singleton);
@@ -50,7 +51,7 @@ namespace MyProject.CompositionRoot
 
         void RegisterInfrastructure(IContainerBuilder builder)
         {
-            
+
         }
     }
 }
