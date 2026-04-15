@@ -26,10 +26,10 @@ namespace MyProject.Actor
         }
 
         [Serializable]
-        class FadeSettings
+        class RotationSettings
         {
-            public bool IsFade => isFade;
-            [SerializeField] bool isFade = true;
+            public float AngleDegrees => angleDegrees;
+            [SerializeField] float angleDegrees = 0f;
 
             public Ease Ease => ease;
             [SerializeField] Ease ease = Ease.OutCubic;
@@ -40,6 +40,16 @@ namespace MyProject.Actor
         {
             public float Multiplier => multiplier;
             [SerializeField, Min(0f)] float multiplier = 1f;
+
+            public Ease Ease => ease;
+            [SerializeField] Ease ease = Ease.OutCubic;
+        }
+
+        [Serializable]
+        class FadeSettings
+        {
+            public bool IsFade => isFade;
+            [SerializeField] bool isFade = true;
 
             public Ease Ease => ease;
             [SerializeField] Ease ease = Ease.OutCubic;
@@ -57,11 +67,14 @@ namespace MyProject.Actor
             public MoveSettings Move => move;
             [SerializeField] MoveSettings move = new();
 
-            public FadeSettings Fade => fade;
-            [SerializeField] FadeSettings fade = new();
+            public RotationSettings Rotation => rotation;
+            [SerializeField] RotationSettings rotation = new();
 
             public ScaleSettings Scale => scale;
             [SerializeField] ScaleSettings scale = new();
+
+            public FadeSettings Fade => fade;
+            [SerializeField] FadeSettings fade = new();
         }
 
         [Header("Initial Show")]
@@ -79,9 +92,11 @@ namespace MyProject.Actor
         RectTransform rectTransform;
         bool usesAnchoredPosition;
         Vector3 basePosition;
+        Quaternion baseRotation;
         Vector3 baseScale;
 
         MotionHandle moveHandle;
+        MotionHandle rotationHandle;
         MotionHandle fadeHandle;
         MotionHandle scaleHandle;
 
@@ -93,6 +108,7 @@ namespace MyProject.Actor
             rectTransform = transform as RectTransform;
             usesAnchoredPosition = rectTransform != null;
             basePosition = usesAnchoredPosition ? rectTransform.anchoredPosition3D : transform.localPosition;
+            baseRotation = transform.localRotation;
             baseScale = transform.localScale;
 
             CacheChildFadeTargets();
@@ -120,6 +136,9 @@ namespace MyProject.Actor
 
             moveHandle = CreateMoveMotion(settings.Move, phaseType, duration).AddTo(this);
             tasks.Add(moveHandle.ToUniTask(CancelBehavior.Cancel, false, ct));
+
+            rotationHandle = CreateRotationMotion(settings.Rotation, phaseType, duration).AddTo(this);
+            tasks.Add(rotationHandle.ToUniTask(CancelBehavior.Cancel, false, ct));
 
             scaleHandle = CreateScaleMotion(settings.Scale, phaseType, duration).AddTo(this);
             tasks.Add(scaleHandle.ToUniTask(CancelBehavior.Cancel, false, ct));
@@ -168,6 +187,17 @@ namespace MyProject.Actor
                 .Bind(progress => ApplyFadeProgress(fadeTargets, progress, phaseType));
         }
 
+        MotionHandle CreateRotationMotion(RotationSettings settings, PhaseType phaseType, float duration)
+        {
+            var offset = Quaternion.Euler(0f, 0f, settings.AngleDegrees);
+            var startRotation = phaseType == PhaseType.Hide ? baseRotation : baseRotation * offset;
+            var targetRotation = phaseType == PhaseType.Hide ? baseRotation * offset : baseRotation;
+
+            return LMotion.Create(startRotation, targetRotation, duration)
+                .WithEase(settings.Ease)
+                .Bind(value => transform.localRotation = value);
+        }
+
         MotionHandle CreateScaleMotion(ScaleSettings settings, PhaseType phaseType, float duration)
         {
             var startScale = phaseType == PhaseType.Hide ? baseScale : baseScale * settings.Multiplier;
@@ -181,6 +211,7 @@ namespace MyProject.Actor
         void CancelRunningMotions()
         {
             moveHandle.TryCancel();
+            rotationHandle.TryCancel();
             fadeHandle.TryCancel();
             scaleHandle.TryCancel();
         }
