@@ -11,6 +11,7 @@ namespace MyProject.CompositionRoot
     public class MainLifeTimeScope : LifetimeScope
     {
         [Header("Actor")]
+        [SerializeField] RootActorHub rootActorHub;
         [SerializeField] TitleActorHub titleActorHub;
         [SerializeField] SelectActorHub selectActorHub;
         [SerializeField] GameActorHub gameActorHub;
@@ -34,6 +35,7 @@ namespace MyProject.CompositionRoot
 
         void RegisterActor(IContainerBuilder builder)
         {
+            builder.RegisterInstance(rootActorHub);
             builder.RegisterInstance(titleActorHub);
             builder.RegisterInstance(selectActorHub);
             builder.RegisterInstance(gameActorHub);
