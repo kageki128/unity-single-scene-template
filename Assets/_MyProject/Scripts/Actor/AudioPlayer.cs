@@ -99,6 +99,16 @@ namespace MyProject.Actor
             audioMixer.SetFloat(seVolumeParameter, ToDecibel(clamped));
         }
 
+        public void ResetBgmVolume()
+        {
+            SetBgmVolume(DefaultVolume);
+        }
+
+        public void ResetSeVolume()
+        {
+            SetSeVolume(DefaultVolume);
+        }
+
         static float ToDecibel(float volume)
         {
             if (volume <= MinVolume)
