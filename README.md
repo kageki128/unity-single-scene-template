@@ -15,7 +15,7 @@
 テンプレートをコピーしたあと、`git` 履歴を消して新しい履歴で開始する。
 
 1. `git clone [template-repository-url]`
-2. `cd [new-project-directory]`
+2. `cd unity-single-scene-template`
 3. `git lfs pull`
 4. `.git` ディレクトリを削除
     - macOS / Linux: `rm -rf .git`
@@ -119,7 +119,7 @@ MonoBehaviourを継承する。DIコンテナを用いて依存性の解決とEn
 ### 依存関係
 
 ```mermaid
-flowchart TB
+graph TB
     CompositionRoot --> Director
     CompositionRoot --> Actor
     CompositionRoot --> Core
