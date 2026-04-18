@@ -1,13 +1,13 @@
 ---
-name: actor-litmotion-animation
-description: ActorのアニメーションをLitMotionで実装するためのskill。
+name: litmotion-animation
+description: LitMotionを使ってアニメーションを実装するためのskill
 ---
 
-# Actor LitMotion Animation
+# LitMotion Animation
 
 ## 目的
 
-Actorアニメーションを、LitMotionの公式思想に沿ってシンプルに実装する。
+アニメーションを、LitMotionの公式思想に沿ってシンプルに実装する。
 
 ## 公式思想に沿った基本原則
 
