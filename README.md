@@ -70,6 +70,7 @@ made from [Unity Single Scene Template](https://github.com/kageki128/unity-singl
 - VContainer
 - LitMotion (+ LitMotion.Animation)
 - Unityroom Client Library
+- Kyub EmojiSearch API
 
 ### エディタ拡張
 
