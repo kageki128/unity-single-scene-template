@@ -7,9 +7,9 @@ namespace MyProject.Actor
 {
     public class RootActorHub : MonoBehaviour
     {
-        [SerializeField] ScrollBackgroundActor scrollBackgroundActor;
-        [SerializeField] StandardSliderActor bgmSliderActor;
-        [SerializeField] StandardSliderActor seSliderActor;
+        [SerializeField] ScrollBackgroundActor scrollBackground;
+        [SerializeField] StandardSliderActor audioSlider;
+        [SerializeField] AudioButtonActor audioButton;
 
         readonly CompositeDisposable disposables = new();
 
@@ -18,54 +18,67 @@ namespace MyProject.Actor
             gameObject.SetActive(true);
 
             InitializeActors();
-            BindVolumeSliders();
+            BindAudioActors();
             await InitialShowAsync(ct);
         }
 
         void InitializeActors()
         {
-            scrollBackgroundActor.Initialize();
-            bgmSliderActor.Initialize();
-            seSliderActor.Initialize();
+            scrollBackground.Initialize();
+            audioSlider.Initialize();
+            audioButton.Initialize();
         }
 
         UniTask InitialShowAsync(CancellationToken ct)
         {
             return UniTask.WhenAll
             (
-                scrollBackgroundActor.InitialShowAsync(ct),
-                bgmSliderActor.InitialShowAsync(ct),
-                seSliderActor.InitialShowAsync(ct)
+                scrollBackground.InitialShowAsync(ct),
+                audioSlider.InitialShowAsync(ct),
+                audioButton.InitialShowAsync(ct)
             );
         }
 
-        void BindVolumeSliders()
+        void BindAudioActors()
         {
             disposables.Clear();
 
             var audioPlayer = AudioPlayer.Instance;
+            var volume = audioPlayer.BgmVolume.CurrentValue;
 
-            bgmSliderActor.SetValueWithoutNotify(audioPlayer.BgmVolume.CurrentValue);
-            seSliderActor.SetValueWithoutNotify(audioPlayer.SeVolume.CurrentValue);
+            audioSlider.SetValue(volume);
+            audioButton.SetVolume(volume);
+            audioPlayer.SetBgmVolume(volume);
+            audioPlayer.SetSeVolume(volume);
 
-            bgmSliderActor.ValueChanged
-                .Subscribe(audioPlayer.SetBgmVolume)
+            audioSlider.ValueChanged
+                .Subscribe(value =>
+                {
+                    audioPlayer.SetBgmVolume(value);
+                    audioPlayer.SetSeVolume(value);
+                })
                 .AddTo(disposables);
-            seSliderActor.ValueChanged
-                .Subscribe(audioPlayer.SetSeVolume)
+            audioSlider.HandleDoubleClicked
+                .Subscribe(_ =>
+                {
+                    audioPlayer.ResetBgmVolume();
+                    audioPlayer.ResetSeVolume();
+                })
                 .AddTo(disposables);
-            bgmSliderActor.HandleDoubleClicked
-                .Subscribe(_ => audioPlayer.ResetBgmVolume())
-                .AddTo(disposables);
-            seSliderActor.HandleDoubleClicked
-                .Subscribe(_ => audioPlayer.ResetSeVolume())
+            audioButton.VolumeRequested
+                .Subscribe(value =>
+                {
+                    audioPlayer.SetBgmVolume(value);
+                    audioPlayer.SetSeVolume(value);
+                })
                 .AddTo(disposables);
 
             audioPlayer.BgmVolume
-                .Subscribe(bgmSliderActor.SetValueWithoutNotify)
-                .AddTo(disposables);
-            audioPlayer.SeVolume
-                .Subscribe(seSliderActor.SetValueWithoutNotify)
+                .Subscribe(value =>
+                {
+                    audioSlider.SetValue(value);
+                    audioButton.SetVolume(value);
+                })
                 .AddTo(disposables);
         }
 

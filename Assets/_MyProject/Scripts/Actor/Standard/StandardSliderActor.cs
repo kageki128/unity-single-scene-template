@@ -44,9 +44,14 @@ namespace MyProject.Actor
             gameObject.SetActive(false);
         }
 
-        public void SetValueWithoutNotify(float value)
+        public void SetValue(float value)
         {
             slider.SetValueWithoutNotify(value);
+        }
+
+        void HandleValueChanged(float value)
+        {
+            valueChanged.OnNext(value);
         }
 
         void OnDestroy()
@@ -55,11 +60,6 @@ namespace MyProject.Actor
 
             valueChanged.OnCompleted();
             valueChanged.Dispose();
-        }
-
-        void HandleValueChanged(float value)
-        {
-            valueChanged.OnNext(value);
         }
     }
 }
