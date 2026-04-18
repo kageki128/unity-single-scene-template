@@ -1,5 +1,5 @@
 ---
-name: litmotion-animation
+name: litmotion
 description: LitMotionを使ってアニメーションを実装するためのskill
 ---
 
