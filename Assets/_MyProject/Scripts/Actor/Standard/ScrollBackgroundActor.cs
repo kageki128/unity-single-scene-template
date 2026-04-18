@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 namespace MyProject.Actor
 {
+    [ExecuteAlways]
     [DisallowMultipleComponent]
     public class ScrollBackgroundActor : ActorBase
     {
         [SerializeField] Image image;
         [SerializeField] float angleDegrees = 180f;
         [SerializeField] float speed = 80f;
+        [SerializeField] bool generateTilesInEditor = false;
 
         readonly List<Image> tiles = new();
         readonly List<Vector2> tileOffsets = new();
@@ -30,6 +32,9 @@ namespace MyProject.Actor
         int cachedScreenHeight;
         Vector2 cachedTileSize;
         Quaternion cachedImageLocalRotation;
+        Sprite cachedSprite;
+        Sprite cachedOverrideSprite;
+        bool cachedGenerateTilesInEditor;
         RectTransform rootCanvasRectTransform;
 
         public override void Initialize()
@@ -60,39 +65,54 @@ namespace MyProject.Actor
 
         void Update()
         {
+            EnsureReferences();
+            if (!Application.isPlaying)
+            {
+                baseAnchoredPosition = imageRectTransform.anchoredPosition;
+            }
+
             if (ShouldRebuildTiles())
             {
                 RebuildTiles();
                 CacheDimensions();
             }
 
-            var direction = GetMoveDirection();
-            scrollOffset += direction * (speed * Time.deltaTime);
+            if (Application.isPlaying)
+            {
+                var direction = GetMoveDirection();
+                scrollOffset += direction * (speed * Time.deltaTime);
 
-            var gridOffset = new Vector2(
-                Vector2.Dot(scrollOffset, basisXUnit),
-                Vector2.Dot(scrollOffset, basisYUnit));
-            gridOffset = new Vector2(
-                WrapOffset(gridOffset.x, tileSize.x),
-                WrapOffset(gridOffset.y, tileSize.y));
-            scrollOffset = (basisXUnit * gridOffset.x) + (basisYUnit * gridOffset.y);
+                var gridOffset = new Vector2(
+                    Vector2.Dot(scrollOffset, basisXUnit),
+                    Vector2.Dot(scrollOffset, basisYUnit));
+                gridOffset = new Vector2(
+                    WrapOffset(gridOffset.x, tileSize.x),
+                    WrapOffset(gridOffset.y, tileSize.y));
+                scrollOffset = (basisXUnit * gridOffset.x) + (basisYUnit * gridOffset.y);
+            }
+            else
+            {
+                scrollOffset = Vector2.zero;
+            }
 
             ApplyTilePositions();
         }
 
         void RebuildTiles()
         {
-            for (var i = 0; i < generatedTiles.Count; i++)
-            {
-                Destroy(generatedTiles[i].gameObject);
-            }
-
-            generatedTiles.Clear();
+            ClearGeneratedTiles();
             tiles.Clear();
             tileOffsets.Clear();
 
             Canvas.ForceUpdateCanvases();
             tileSize = imageRectTransform.rect.size;
+
+            if (!Application.isPlaying && !generateTilesInEditor)
+            {
+                tiles.Add(image);
+                tileOffsets.Add(Vector2.zero);
+                return;
+            }
 
             if (tileSize.x <= 0f || tileSize.y <= 0f)
             {
@@ -121,6 +141,11 @@ namespace MyProject.Actor
 
                     if (x != 0 || y != 0)
                     {
+                        if (!Application.isPlaying)
+                        {
+                            tile.gameObject.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+
                         generatedTiles.Add(tile);
                     }
 
@@ -145,7 +170,27 @@ namespace MyProject.Actor
             }
 
             var currentRotation = imageRectTransform.localRotation;
-            return Quaternion.Angle(cachedImageLocalRotation, currentRotation) > 0.01f;
+            if (Quaternion.Angle(cachedImageLocalRotation, currentRotation) > 0.01f)
+            {
+                return true;
+            }
+
+            if (cachedSprite != image.sprite)
+            {
+                return true;
+            }
+
+            if (cachedOverrideSprite != image.overrideSprite)
+            {
+                return true;
+            }
+
+            if (!Application.isPlaying && cachedGenerateTilesInEditor != generateTilesInEditor)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         void CacheDimensions()
@@ -154,6 +199,9 @@ namespace MyProject.Actor
             cachedScreenHeight = Screen.height;
             cachedTileSize = tileSize;
             cachedImageLocalRotation = imageRectTransform.localRotation;
+            cachedSprite = image.sprite;
+            cachedOverrideSprite = image.overrideSprite;
+            cachedGenerateTilesInEditor = generateTilesInEditor;
         }
 
         void UpdateTileBasis()
@@ -222,6 +270,41 @@ namespace MyProject.Actor
         static float WrapOffset(float value, float length)
         {
             return Mathf.Repeat(value + length, length * 2f) - length;
+        }
+
+        void EnsureReferences()
+        {
+            imageRectTransform = image.rectTransform;
+            rootCanvasRectTransform = GetRootCanvasRectTransform();
+        }
+
+        void OnDisable()
+        {
+            if (Application.isPlaying)
+            {
+                return;
+            }
+
+            ClearGeneratedTiles();
+            tiles.Clear();
+            tileOffsets.Clear();
+        }
+
+        void ClearGeneratedTiles()
+        {
+            for (var i = 0; i < generatedTiles.Count; i++)
+            {
+                if (Application.isPlaying)
+                {
+                    Destroy(generatedTiles[i].gameObject);
+                }
+                else
+                {
+                    DestroyImmediate(generatedTiles[i].gameObject);
+                }
+            }
+
+            generatedTiles.Clear();
         }
     }
 }
