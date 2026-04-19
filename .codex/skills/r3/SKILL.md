@@ -1,6 +1,6 @@
 ---
 name: r3
-description: R3を使ってUnityでリアクティブな状態管理とイベント通知を実装するためのskill。ReactiveProperty/ReadOnlyReactiveProperty/Subject/Observable/CompositeDisposable/AddToに加え、ObservableCollections.R3によるコレクション差分通知（ObserveAdd/ObserveRemoveなど）を扱うときに使う。
+description: R3を使ってUnityでリアクティブな状態管理とイベント通知を実装するためのskill
 ---
 
 # R3 Reactive
@@ -13,20 +13,19 @@ R3の公式思想に沿って、状態公開とイベント通知をシンプル
 
 - 可変状態は `ReactiveProperty<T>` を private フィールドとして保持し、外部公開は `ReadOnlyReactiveProperty<T>` に限定する。
 - イベント通知は `Subject<T>` を使い、公開面は `Observable<T>` だけを返す。
-- 可変コレクションは `ObservableList<T>` などを内部で管理し、公開は `IObservableCollection<T>` で行う。
+- 可変コレクションは `ObservableList<T>` などを内部で管理し、公開は `ReadOnlyObservableCollection<T>` で行う。
 - `Subscribe(...)` の戻り値は必ず `CompositeDisposable` か `AddTo(this|disposables)` で寿命管理する。
 - `Subject` / `ReactiveProperty` は破棄時に `OnCompleted` を流す前提で設計し、明示的に `Dispose` する。
-- 時間・フレーム系オペレーターは既定Provider（Unityでは `Update`）を前提にし、必要時のみ `UnityTimeProvider` / `UnityFrameProvider` を明示する。
 
 ## 実装フロー
 
-1. Coreの状態を定義する
+1. 状態を定義する
    - `ReactiveProperty<T>` を内部状態にし、公開プロパティは `ReadOnlyReactiveProperty<T>` で出す。
-2. Actorのイベントを定義する
+2. イベントを定義する
    - Unityイベントを `Subject<T>` へ橋渡しし、`OnNext` で発行する。
 3. Collectionの差分通知を定義する
    - `ObserveAdd` / `ObserveRemove` など、必要な差分イベントだけ購読する。
-4. Directorで購読する
+4. 購読する
    - イベントや状態を `Subscribe` し、`AddTo(disposables)` で束ねる。
 5. ライフサイクルで解放する
    - 再初期化前は `disposables.Clear()`、終了時は `Dispose()` する。
@@ -70,29 +69,6 @@ buttonActor.Clicked
     .Take(1)
     .Subscribe(_ => sceneCore.RequestSceneChange(SceneType.Select))
     .AddTo(disposables);
-```
-
-```csharp
-public class InventoryCore : IDisposable
-{
-    public IObservableCollection<int> Items => items;
-    readonly ObservableList<int> items = new();
-    readonly CompositeDisposable disposables = new();
-
-    public InventoryCore()
-    {
-        items.ObserveAdd()
-            .Subscribe(x => UnityEngine.Debug.Log($"Add: {x.Value}"))
-            .AddTo(disposables);
-    }
-
-    public void AddItem(int id) => items.Add(id);
-
-    public void Dispose()
-    {
-        disposables.Dispose();
-    }
-}
 ```
 
 ## 参照

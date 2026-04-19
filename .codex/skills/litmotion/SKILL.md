@@ -19,13 +19,11 @@ description: LitMotionを使ってアニメーションを実装するためのs
 
 ## 実装フロー
 
-1. 責務を分ける  
-    - `Director` は順序制御のみ、Tween詳細は各Actorに置く。
-2. Actorに設定を置く  
+1. 設定を置く  
     - 調整が必要な値だけ Inspector に公開し、不要項目は公開しない。
-3. 再生を実装する  
+2. 再生を実装する  
     - `LMotion.Create(settings) -> Bind -> AddTo(this) -> ToUniTask(ct)` を基本形にする。
-4. 複数モーションを組む  
+3. 複数モーションを組む  
     - 同時は `UniTask.WhenAll`、順次は `LSequence` を使う。
 
 ## ベストプラクティス
@@ -38,7 +36,6 @@ description: LitMotionを使ってアニメーションを実装するためのs
 
 ## 禁止/注意
 
-- Actor以外にTweenの具体値やBind処理を書かない。
 - `LSequence` に再生中Handleや無限ループMotionを追加しない。
 - `CancellationToken` を待機に渡さない実装を追加しない。
 
