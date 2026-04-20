@@ -4,77 +4,76 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace MyProject.Actor
 {
     [DisallowMultipleComponent]
-    public class StandardActorTransitionAnimator : MonoBehaviour
+    public class StandardTransitionAnimator : MonoBehaviour
     {
 
         [Serializable]
         class MoveSettings
         {
-            [field: SerializeField, FormerlySerializedAs("distance"), Min(0f)]
+            [field: SerializeField, Min(0f)]
             public float Distance { get; private set; } = 3f;
 
-            [field: SerializeField, FormerlySerializedAs("angleDegrees")]
+            [field: SerializeField]
             public float AngleDegrees { get; private set; } = 0f;
 
-            [field: SerializeField, FormerlySerializedAs("ease")]
+            [field: SerializeField]
             public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class RotationSettings
         {
-            [field: SerializeField, FormerlySerializedAs("angleDegrees")]
+            [field: SerializeField]
             public float AngleDegrees { get; private set; } = 0f;
 
-            [field: SerializeField, FormerlySerializedAs("ease")]
+            [field: SerializeField]
             public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class ScaleSettings
         {
-            [field: SerializeField, FormerlySerializedAs("multiplier"), Min(0f)]
+            [field: SerializeField, Min(0f)]
             public float Multiplier { get; private set; } = 1f;
 
-            [field: SerializeField, FormerlySerializedAs("ease")]
+            [field: SerializeField]
             public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class FadeSettings
         {
-            [field: SerializeField, FormerlySerializedAs("isFade")]
+            [field: SerializeField]
             public bool IsFade { get; private set; } = true;
 
-            [field: SerializeField, FormerlySerializedAs("ease")]
+            [field: SerializeField]
             public Ease Ease { get; private set; } = Ease.OutCubic;
         }
 
         [Serializable]
         class PhaseSettings
         {
-            [field: SerializeField, FormerlySerializedAs("durationSeconds"), Min(0f)]
+            [field: SerializeField, Min(0f)]
             public float DurationSeconds { get; private set; } = 0.3f;
 
-            [field: SerializeField, FormerlySerializedAs("useCanvasGroupForFade")]
+            [field: SerializeField]
             public bool UseCanvasGroupForFade { get; private set; } = true;
 
-            [field: SerializeField, FormerlySerializedAs("move")]
+            [field: SerializeField]
             public MoveSettings Move { get; private set; } = new();
 
-            [field: SerializeField, FormerlySerializedAs("rotation")]
+            [field: SerializeField]
             public RotationSettings Rotation { get; private set; } = new();
 
-            [field: SerializeField, FormerlySerializedAs("scale")]
+            [field: SerializeField]
             public ScaleSettings Scale { get; private set; } = new();
 
-            [field: SerializeField, FormerlySerializedAs("fade")]
+            [field: SerializeField]
             public FadeSettings Fade { get; private set; } = new();
         }
 
@@ -332,3 +331,4 @@ namespace MyProject.Actor
         }
     }
 }
+

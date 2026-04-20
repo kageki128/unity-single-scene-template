@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MyProject.Core
 {
     [CreateAssetMenu(fileName = "GameConfig", menuName = "MyProject/GameConfig")]
     public class GameConfigSO : ScriptableObject
     {
-        [field: SerializeField, FormerlySerializedAs("initialSceneType")]
+        [field: SerializeField]
         public SceneType InitialSceneType { get; private set; } = SceneType.Title;
     }
 }

@@ -7,20 +7,20 @@ namespace MyProject.Actor
 {
     [RequireComponent(typeof(PointerEventObserver))]
     [RequireComponent(typeof(ButtonAnimator))]
-    [RequireComponent(typeof(StandardActorTransitionAnimator))]
+    [RequireComponent(typeof(StandardTransitionAnimator))]
     public class StandardButtonActor : ActorBase
     {
         public Observable<Unit> Clicked => pointerEventObserver.Clicked.Select(_ => Unit.Default);
 
         PointerEventObserver pointerEventObserver;
         ButtonAnimator buttonAnimator;
-        StandardActorTransitionAnimator transitionAnimator;
+        StandardTransitionAnimator transitionAnimator;
 
         public override void Initialize()
         {
             pointerEventObserver = GetComponent<PointerEventObserver>();
             buttonAnimator = GetComponent<ButtonAnimator>();
-            transitionAnimator = GetComponent<StandardActorTransitionAnimator>();
+            transitionAnimator = GetComponent<StandardTransitionAnimator>();
 
             transitionAnimator.Initialize();
 
@@ -42,3 +42,4 @@ namespace MyProject.Actor
         }
     }
 }
+

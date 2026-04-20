@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MyProject.Actor
 {
@@ -15,16 +14,16 @@ namespace MyProject.Actor
         [Serializable]
         class TimedActorAnimation
         {
-            [field: SerializeField, FormerlySerializedAs("actor")]
+            [field: SerializeField]
             public ActorBase Actor { get; private set; }
 
-            [field: SerializeField, FormerlySerializedAs("initialShowStartSeconds"), Min(0f)]
+            [field: SerializeField, Min(0f)]
             public float InitialShowStartSeconds { get; private set; }
 
-            [field: SerializeField, FormerlySerializedAs("showStartSeconds"), Min(0f)]
+            [field: SerializeField, Min(0f)]
             public float ShowStartSeconds { get; private set; }
 
-            [field: SerializeField, FormerlySerializedAs("hideStartSeconds"), Min(0f)]
+            [field: SerializeField, Min(0f)]
             public float HideStartSeconds { get; private set; }
         }
 

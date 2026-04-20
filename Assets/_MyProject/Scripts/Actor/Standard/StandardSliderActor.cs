@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace MyProject.Actor
 {
-    [RequireComponent(typeof(StandardActorTransitionAnimator))]
+    [RequireComponent(typeof(StandardTransitionAnimator))]
     public class StandardSliderActor : ActorBase
     {
         public Observable<float> ValueChanged => valueChanged;
@@ -18,11 +18,11 @@ namespace MyProject.Actor
 
         [SerializeField] Slider slider;
         [SerializeField] PointerClickObserver handleClickObserver;
-        StandardActorTransitionAnimator transitionAnimator;
+        StandardTransitionAnimator transitionAnimator;
 
         public override void Initialize()
         {
-            transitionAnimator = GetComponent<StandardActorTransitionAnimator>();
+            transitionAnimator = GetComponent<StandardTransitionAnimator>();
 
             transitionAnimator.Initialize();
 
@@ -63,3 +63,4 @@ namespace MyProject.Actor
         }
     }
 }
+

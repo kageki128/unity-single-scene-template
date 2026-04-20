@@ -8,7 +8,7 @@ namespace MyProject.Actor
 {
     [RequireComponent(typeof(PointerEventObserver))]
     [RequireComponent(typeof(ButtonAnimator))]
-    [RequireComponent(typeof(StandardActorTransitionAnimator))]
+    [RequireComponent(typeof(StandardTransitionAnimator))]
     public class AudioButtonActor : ActorBase
     {
         public Observable<float> VolumeRequested => volumeRequested;
@@ -22,7 +22,7 @@ namespace MyProject.Actor
 
         PointerEventObserver pointerEventObserver;
         ButtonAnimator buttonAnimator;
-        StandardActorTransitionAnimator transitionAnimator;
+        StandardTransitionAnimator transitionAnimator;
         float currentVolume;
         float? savedVolume;
 
@@ -33,7 +33,7 @@ namespace MyProject.Actor
 
             pointerEventObserver = GetComponent<PointerEventObserver>();
             buttonAnimator = GetComponent<ButtonAnimator>();
-            transitionAnimator = GetComponent<StandardActorTransitionAnimator>();
+            transitionAnimator = GetComponent<StandardTransitionAnimator>();
 
             pointerEventObserver.Clicked
                 .Subscribe(_ => HandleClicked())
@@ -92,3 +92,4 @@ namespace MyProject.Actor
         }
     }
 }
+

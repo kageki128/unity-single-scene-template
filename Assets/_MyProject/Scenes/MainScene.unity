@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
   initialShowSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
   initialShowSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -2011,7 +2011,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
   initialShowSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -2979,7 +2979,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
   initialShowSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -3407,7 +3407,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActorTransitionAnimator
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
   initialShowSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
