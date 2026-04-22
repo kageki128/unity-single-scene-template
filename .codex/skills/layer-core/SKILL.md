@@ -1,5 +1,5 @@
 ---
-name: core-layer
+name: layer-core
 description: Core層を実装するためのskill
 ---
 

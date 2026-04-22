@@ -1,5 +1,5 @@
 ---
-name: actor-layer
+name: layer-actor
 description: Actor層を実装するためのskill
 ---
 

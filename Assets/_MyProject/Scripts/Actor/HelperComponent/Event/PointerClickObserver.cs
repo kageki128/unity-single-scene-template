@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace MyProject.Actor
 {
+    [RequireComponent(typeof(Collider2D))]
     [DisallowMultipleComponent]
     public class PointerClickObserver : MonoBehaviour, IPointerClickHandler
     {

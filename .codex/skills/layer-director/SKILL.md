@@ -1,5 +1,5 @@
 ---
-name: director-layer
+name: layer-director
 description: Director層を実装するためのskill
 ---
 

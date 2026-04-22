@@ -1,5 +1,5 @@
 ---
-name: composition-root-layer
+name: layer-composition-root
 description: CompositionRoot層を実装するためのskill
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: infrastructure-layer
+name: layer-infrastructure
 description: Infrastructure層を実装するためのskill
 ---
 
