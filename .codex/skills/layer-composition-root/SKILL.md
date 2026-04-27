@@ -15,6 +15,7 @@ CompositionRootはDIコンテナを使って依存性の解決を行い、EntryP
 
 ## ルール
 
+- `MonoBehaviour` は基本的に継承する。
 - `CompositionRoot` は全層へ依存してよいが、依存登録と起動制御以外のロジックは実装しない。
 - 登録メソッドは責務単位で分割する。基本的には層ごとに分ける。
 - EntryPointは `RegisterEntryPoint<T>` で登録する。EntryPointは基本的に1つのみとする。
