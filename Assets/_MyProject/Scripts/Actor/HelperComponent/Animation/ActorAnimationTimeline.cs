@@ -27,6 +27,8 @@ namespace MyProject.Actor
             public float HideStartSeconds { get; private set; }
         }
 
+        [SerializeField] bool useInitialShow = false;
+
         [Header("Actor Timelines")]
         [SerializeField] List<TimedActorAnimation> actorAnimations = new();
 
@@ -66,7 +68,9 @@ namespace MyProject.Actor
         /// </summary>
         public override UniTask InitialShowAsync(CancellationToken ct)
         {
-            return playInitialShowTimelineAsync(ct);
+            return useInitialShow
+                ? playInitialShowTimelineAsync(ct)
+                : playShowTimelineAsync(ct);
         }
 
         /// <summary>

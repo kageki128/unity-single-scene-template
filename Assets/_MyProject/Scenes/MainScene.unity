@@ -1397,8 +1397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd91423626e678240bc141f41d5e1050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.GameActorHub
-  useIndividualInitialShow: 0
-  ToSelectButton: {fileID: 858934388}
+  toSelectButton: {fileID: 858934388}
 --- !u!114 &706006541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,13 +1410,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
+  useInitialShow: 1
   actorAnimations:
   - <Actor>k__BackingField: {fileID: 248223899}
-    <InitialShowStartSeconds>k__BackingField: 0
+    <InitialShowStartSeconds>k__BackingField: 1
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
   - <Actor>k__BackingField: {fileID: 858934388}
-    <InitialShowStartSeconds>k__BackingField: 0
+    <InitialShowStartSeconds>k__BackingField: 1
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
 --- !u!1 &858934383
@@ -1861,7 +1861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d27b4cd3ee44d3c9a4a24e80c1b7b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.TitleActorHub
-  useIndividualInitialShow: 0
 --- !u!114 &1007905487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,6 +1873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
+  useInitialShow: 0
   actorAnimations: []
 --- !u!1 &1024991090
 GameObject:
@@ -2287,6 +2287,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2337,7 +2338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7565e8f123724f3ebb97b5b4daa8f832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ResultActorHub
-  useIndividualInitialShow: 0
 --- !u!114 &1316483773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2350,6 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
+  useInitialShow: 0
   actorAnimations: []
 --- !u!1 &1356142520
 GameObject:
@@ -3305,6 +3306,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -3502,7 +3504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e968e5f7244502897f982ad8f41fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.SelectActorHub
-  useIndividualInitialShow: 0
 --- !u!114 &2142052736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3515,6 +3516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
+  useInitialShow: 0
   actorAnimations:
   - <Actor>k__BackingField: {fileID: 1072198187}
     <InitialShowStartSeconds>k__BackingField: 0
