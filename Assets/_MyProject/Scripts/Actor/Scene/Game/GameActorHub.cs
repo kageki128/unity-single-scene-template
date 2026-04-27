@@ -14,19 +14,19 @@ namespace MyProject.Actor
         [SerializeField] StandardButtonActor toSelectButton;
 
         ActorAnimationTimeline animationTimeline;
-        GameActionsObserver gameActions;
+        GameActionsObserver gameActionsObserver;
 
         [Inject]
-        public void Construct(GameActionsObserver gameActions)
+        public void Construct(GameActionsObserver gameActionsObserver)
         {
-            this.gameActions = gameActions;
+            this.gameActionsObserver = gameActionsObserver;
         }
 
         public override void Initialize()
         {
             animationTimeline = GetComponent<ActorAnimationTimeline>();
 
-            gameActions.Disable();
+            gameActionsObserver.Disable();
             animationTimeline.Initialize();
             gameObject.SetActive(false);
         }
@@ -35,19 +35,19 @@ namespace MyProject.Actor
         {
             gameObject.SetActive(true);
             await animationTimeline.InitialShowAsync(ct);
-            gameActions.Enable();
+            gameActionsObserver.Enable();
         }
 
         public override async UniTask ShowAsync(CancellationToken ct)
         {
             gameObject.SetActive(true);
             await animationTimeline.ShowAsync(ct);
-            gameActions.Enable();
+            gameActionsObserver.Enable();
         }
 
         public override async UniTask HideAsync(CancellationToken ct)
         {
-            gameActions.Disable();
+            gameActionsObserver.Disable();
             await animationTimeline.HideAsync(ct);
             gameObject.SetActive(false);
         }

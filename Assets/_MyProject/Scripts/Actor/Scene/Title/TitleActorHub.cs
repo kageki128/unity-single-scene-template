@@ -9,19 +9,19 @@ namespace MyProject.Actor
     public class TitleActorHub : SceneActorHubBase
     {
         ActorAnimationTimeline animationTimeline;
-        TitleActionsObserver titleActions;
+        TitleActionsObserver titleActionsObserver;
 
         [Inject]
-        public void Construct(TitleActionsObserver titleActions)
+        public void Construct(TitleActionsObserver titleActionsObserver)
         {
-            this.titleActions = titleActions;
+            this.titleActionsObserver = titleActionsObserver;
         }
 
         public override void Initialize()
         {
             animationTimeline = GetComponent<ActorAnimationTimeline>();
 
-            titleActions.Disable();
+            titleActionsObserver.Disable();
             animationTimeline.Initialize();
             gameObject.SetActive(false);
         }
@@ -30,19 +30,19 @@ namespace MyProject.Actor
         {
             gameObject.SetActive(true);
             await animationTimeline.InitialShowAsync(ct);
-            titleActions.Enable();
+            titleActionsObserver.Enable();
         }
 
         public override async UniTask ShowAsync(CancellationToken ct)
         {
             gameObject.SetActive(true);
             await animationTimeline.ShowAsync(ct);
-            titleActions.Enable();
+            titleActionsObserver.Enable();
         }
 
         public override async UniTask HideAsync(CancellationToken ct)
         {
-            titleActions.Disable();
+            titleActionsObserver.Disable();
             await animationTimeline.HideAsync(ct);
             gameObject.SetActive(false);
         }

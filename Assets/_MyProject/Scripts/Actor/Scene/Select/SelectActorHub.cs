@@ -9,19 +9,19 @@ namespace MyProject.Actor
     public class SelectActorHub : SceneActorHubBase
     {
         ActorAnimationTimeline animationTimeline;
-        SelectActionsObserver selectActions;
+        SelectActionsObserver selectActionsObserver;
 
         [Inject]
-        public void Construct(SelectActionsObserver selectActions)
+        public void Construct(SelectActionsObserver selectActionsObserver)
         {
-            this.selectActions = selectActions;
+            this.selectActionsObserver = selectActionsObserver;
         }
 
         public override void Initialize()
         {
             animationTimeline = GetComponent<ActorAnimationTimeline>();
 
-            selectActions.Disable();
+            selectActionsObserver.Disable();
             animationTimeline.Initialize();
             gameObject.SetActive(false);
         }
@@ -30,19 +30,19 @@ namespace MyProject.Actor
         {
             gameObject.SetActive(true);
             await animationTimeline.InitialShowAsync(ct);
-            selectActions.Enable();
+            selectActionsObserver.Enable();
         }
 
         public override async UniTask ShowAsync(CancellationToken ct)
         {
             gameObject.SetActive(true);
             await animationTimeline.ShowAsync(ct);
-            selectActions.Enable();
+            selectActionsObserver.Enable();
         }
 
         public override async UniTask HideAsync(CancellationToken ct)
         {
-            selectActions.Disable();
+            selectActionsObserver.Disable();
             await animationTimeline.HideAsync(ct);
             gameObject.SetActive(false);
         }
