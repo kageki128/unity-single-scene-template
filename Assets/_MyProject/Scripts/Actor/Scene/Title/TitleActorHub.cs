@@ -9,10 +9,10 @@ namespace MyProject.Actor
     public class TitleActorHub : SceneActorHubBase
     {
         ActorAnimationTimeline animationTimeline;
-        TitleActions titleActions;
+        TitleActionsObserver titleActions;
 
         [Inject]
-        public void Construct(TitleActions titleActions)
+        public void Construct(TitleActionsObserver titleActions)
         {
             this.titleActions = titleActions;
         }

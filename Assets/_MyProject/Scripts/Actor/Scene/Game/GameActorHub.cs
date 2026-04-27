@@ -14,10 +14,10 @@ namespace MyProject.Actor
         [SerializeField] StandardButtonActor toSelectButton;
 
         ActorAnimationTimeline animationTimeline;
-        GameActions gameActions;
+        GameActionsObserver gameActions;
 
         [Inject]
-        public void Construct(GameActions gameActions)
+        public void Construct(GameActionsObserver gameActions)
         {
             this.gameActions = gameActions;
         }

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace MyProject.Actor
 {
-    public abstract class ActionsBase : IDisposable
+    public abstract class ActionsObserverBase : IDisposable
     {
         public abstract void Enable();
         public abstract void Disable();

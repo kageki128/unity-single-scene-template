@@ -35,11 +35,14 @@ namespace MyProject.CompositionRoot
 
         void RegisterActor(IContainerBuilder builder)
         {
-            builder.Register<MainActions>(Lifetime.Singleton);
             builder.Register<TitleActions>(Lifetime.Singleton);
             builder.Register<SelectActions>(Lifetime.Singleton);
             builder.Register<GameActions>(Lifetime.Singleton);
             builder.Register<ResultActions>(Lifetime.Singleton);
+            builder.Register<TitleActionsObserver>(Lifetime.Singleton);
+            builder.Register<SelectActionsObserver>(Lifetime.Singleton);
+            builder.Register<GameActionsObserver>(Lifetime.Singleton);
+            builder.Register<ResultActionsObserver>(Lifetime.Singleton);
             builder.RegisterComponent(rootActorHub);
             builder.RegisterComponent(titleActorHub);
             builder.RegisterComponent(selectActorHub);

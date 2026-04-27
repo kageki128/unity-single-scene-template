@@ -9,10 +9,10 @@ namespace MyProject.Actor
     public class SelectActorHub : SceneActorHubBase
     {
         ActorAnimationTimeline animationTimeline;
-        SelectActions selectActions;
+        SelectActionsObserver selectActions;
 
         [Inject]
-        public void Construct(SelectActions selectActions)
+        public void Construct(SelectActionsObserver selectActions)
         {
             this.selectActions = selectActions;
         }

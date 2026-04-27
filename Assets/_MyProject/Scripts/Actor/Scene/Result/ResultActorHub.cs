@@ -9,10 +9,10 @@ namespace MyProject.Actor
     public class ResultActorHub : SceneActorHubBase
     {
         ActorAnimationTimeline animationTimeline;
-        ResultActions resultActions;
+        ResultActionsObserver resultActions;
 
         [Inject]
-        public void Construct(ResultActions resultActions)
+        public void Construct(ResultActionsObserver resultActions)
         {
             this.resultActions = resultActions;
         }
