@@ -2,12 +2,19 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyProject.Actor;
+using MyProject.Core;
 using R3;
 
 namespace MyProject.Director
 {
     public class SelectSceneDirector : ISceneDirector, IDisposable
     {
+        public Observable<SceneType> SceneChangeRequest => sceneChangeRequest;
+        readonly Subject<SceneType> sceneChangeRequest = new();
+
+        public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
+        readonly Subject<Unit> sceneReloadRequest = new();
+
         readonly SelectActorHub selectActorHub;
 
         readonly CompositeDisposable disposables = new();
@@ -59,6 +66,8 @@ namespace MyProject.Director
         public void Dispose()
         {
             disposables.Dispose();
+            sceneChangeRequest.Dispose();
+            sceneReloadRequest.Dispose();
         }
 
         void HandleEnter()

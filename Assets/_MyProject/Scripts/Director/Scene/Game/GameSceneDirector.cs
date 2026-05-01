@@ -9,18 +9,18 @@ namespace MyProject.Director
 {
     public class GameSceneDirector : ISceneDirector, IDisposable
     {
-        readonly SceneCore sceneCore;
+        public Observable<SceneType> SceneChangeRequest => sceneChangeRequest;
+        readonly Subject<SceneType> sceneChangeRequest = new();
+
+        public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
+        readonly Subject<Unit> sceneReloadRequest = new();
+
         readonly GameActorHub gameActorHub;
 
         readonly CompositeDisposable disposables = new();
 
-        public GameSceneDirector
-        (
-            SceneCore sceneCore,
-            GameActorHub gameActorHub
-        )
+        public GameSceneDirector(GameActorHub gameActorHub)
         {
-            this.sceneCore = sceneCore;
             this.gameActorHub = gameActorHub;
         }
 
@@ -66,6 +66,8 @@ namespace MyProject.Director
         public void Dispose()
         {
             disposables.Dispose();
+            sceneChangeRequest.Dispose();
+            sceneReloadRequest.Dispose();
         }
 
         void HandleEnter()
@@ -73,7 +75,7 @@ namespace MyProject.Director
             disposables.Clear();
             gameActorHub.ToSelectButtonClicked
                 .Take(1)
-                .Subscribe(_ => sceneCore.RequestSceneChange(SceneType.Select))
+                .Subscribe(_ => sceneChangeRequest.OnNext(SceneType.Select))
                 .AddTo(disposables);
         }
     }

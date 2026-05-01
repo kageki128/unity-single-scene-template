@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyProject.Core;
@@ -10,17 +11,17 @@ namespace MyProject.Director
 {
     public class MainEntryPoint : IAsyncStartable, ITickable, IDisposable
     {
-        readonly SceneCore sceneCore;
-
         readonly RootDirector rootDirector;
         readonly Dictionary<SceneType, ISceneDirector> sceneDirectors = new();
 
+        readonly SemaphoreSlim sceneChangeSemaphore = new(1, 1);
         readonly CompositeDisposable disposables = new();
         readonly CancellationTokenSource cts = new();
+        SceneType currentScene;
 
         public MainEntryPoint
         (
-            SceneCore sceneCore,
+            GameConfigSO gameConfig,
             RootDirector rootDirector,
             TitleSceneDirector titleSceneDirector,
             SelectSceneDirector selectSceneDirector,
@@ -28,8 +29,8 @@ namespace MyProject.Director
             ResultSceneDirector resultSceneDirector
         )
         {
-            this.sceneCore = sceneCore;
             this.rootDirector = rootDirector;
+            currentScene = gameConfig.InitialSceneType;
             sceneDirectors.Add(SceneType.Title, titleSceneDirector);
             sceneDirectors.Add(SceneType.Select, selectSceneDirector);
             sceneDirectors.Add(SceneType.Game, gameSceneDirector);
@@ -46,7 +47,6 @@ namespace MyProject.Director
         {
             rootDirector.Tick();
 
-            var currentScene = sceneCore.CurrentScene.CurrentValue;
             var director = GetSceneDirector(currentScene);
             director.Tick();
         }
@@ -56,6 +56,7 @@ namespace MyProject.Director
             disposables.Dispose();
             cts.Cancel();
             cts.Dispose();
+            sceneChangeSemaphore.Dispose();
         }
 
         async UniTask ResetSceneAsync(CancellationToken ct)
@@ -67,25 +68,40 @@ namespace MyProject.Director
                 await director.InitializeAsync(ct);
             }
 
-            sceneCore.CurrentScene.Pairwise().Subscribe(pair =>
-            {
-                var (from, to) = pair;
-                HandleSceneTransitionAsync(from, to).Forget();
-            }).AddTo(disposables);
+            // シーンチェンジリクエストを購読
+            var sceneChangeRequests = sceneDirectors.Values
+                .Select(director => director.SceneChangeRequest)
+                .ToArray();
+            Observable.Merge(sceneChangeRequests)
+                .Subscribe(HandleSceneChangeRequest)
+                .AddTo(disposables);
 
-            sceneCore.SceneReload.Subscribe(scene =>
-            {
-                HandleSceneTransitionAsync(scene, scene).Forget();
-            }).AddTo(disposables);
+            var sceneReloadRequests = sceneDirectors.Values
+                .Select(director => director.SceneReloadRequest)
+                .ToArray();
+            Observable.Merge(sceneReloadRequests)
+                .Subscribe(_ => HandleSceneChangeRequest(currentScene))
+                .AddTo(disposables);
 
             // 初期シーンを起動
-            var initialScene = sceneCore.CurrentScene.CurrentValue;
-            var initialSceneDirector = GetSceneDirector(initialScene);
+            var initialSceneDirector = GetSceneDirector(currentScene);
             await initialSceneDirector.BeforeEnterAsync(ct);
             await initialSceneDirector.InitialEnterAsync(ct);
         }
 
-        async UniTask HandleSceneTransitionAsync(SceneType from, SceneType to)
+        void HandleSceneChangeRequest(SceneType to)
+        {
+            if (!sceneChangeSemaphore.Wait(0))
+            {
+                throw new InvalidOperationException("Scene change was requested while another scene change is in progress.");
+            }
+
+            var from = currentScene;
+            currentScene = to;
+            ExecuteSceneTransitionAsync(from, to).Forget();
+        }
+
+        async UniTask ExecuteSceneTransitionAsync(SceneType from, SceneType to)
         {
             var fromDirector = GetSceneDirector(from);
             var toDirector = GetSceneDirector(to);
@@ -110,7 +126,12 @@ namespace MyProject.Director
             }
             finally
             {
-                sceneCore.FinishSceneChange();
+                if (sceneChangeSemaphore.CurrentCount == 1)
+                {
+                    throw new InvalidOperationException("No scene change is in progress.");
+                }
+
+                sceneChangeSemaphore.Release();
             }
         }
 

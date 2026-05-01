@@ -1,10 +1,22 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using MyProject.Core;
+using R3;
 
 namespace MyProject.Director
 {
     public interface ISceneDirector
     {
+        /// <summary>
+        /// シーンチェンジのリクエストイベント
+        /// </summary>
+        Observable<SceneType> SceneChangeRequest { get; }
+
+        /// <summary>
+        /// シーンリロードのリクエストイベント
+        /// </summary>
+        Observable<Unit> SceneReloadRequest { get; }
+
         /// <summary>
         /// シーンの初期化処理を行う。
         /// </summary>

@@ -29,7 +29,6 @@ namespace MyProject.CompositionRoot
 
         void RegisterCore(IContainerBuilder builder)
         {
-            builder.Register<SceneCore>(Lifetime.Singleton);
             builder.RegisterInstance(gameConfig);
         }
 
