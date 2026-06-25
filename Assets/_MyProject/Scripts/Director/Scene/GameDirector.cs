@@ -15,12 +15,14 @@ namespace MyProject.Director
         public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
         readonly Subject<Unit> sceneReloadRequest = new();
 
+        readonly GameSessionModel gameSessionModel;
         readonly GameViewHub gameViewHub;
 
         readonly CompositeDisposable disposables = new();
 
-        public GameDirector(GameViewHub gameViewHub)
+        public GameDirector(GameSessionModel gameSessionModel, GameViewHub gameViewHub)
         {
+            this.gameSessionModel = gameSessionModel;
             this.gameViewHub = gameViewHub;
         }
 
