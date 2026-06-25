@@ -26,7 +26,6 @@ namespace MyProject.Director
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
-            ct.ThrowIfCancellationRequested();
             resultActorHub.Initialize();
             await UniTask.CompletedTask;
         }
@@ -39,7 +38,12 @@ namespace MyProject.Director
         public async UniTask EnterAsync(CancellationToken ct)
         {
             await resultActorHub.ShowAsync(ct);
-            HandleEnter();
+        }
+
+        public async UniTask AfterEnterAsync(CancellationToken ct)
+        {
+            disposables.Clear();
+            await UniTask.CompletedTask;
         }
 
         public void Tick()
@@ -64,9 +68,5 @@ namespace MyProject.Director
             sceneReloadRequest.Dispose();
         }
 
-        void HandleEnter()
-        {
-            disposables.Clear();
-        }
     }
 }

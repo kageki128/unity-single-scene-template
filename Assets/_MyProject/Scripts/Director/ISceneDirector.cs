@@ -35,6 +35,12 @@ namespace MyProject.Director
         UniTask EnterAsync(CancellationToken ct);
 
         /// <summary>
+        /// シーンチェンジでこのシーンへの遷移が完了した後に呼び出される処理。
+        /// 遷移元のExitAsyncと遷移先のEnterAsyncの後に呼び出される。
+        /// </summary>
+        UniTask AfterEnterAsync(CancellationToken ct);
+
+        /// <summary>
         /// このシーンが選ばれている間、毎フレーム呼び出される処理。
         /// </summary>
         void Tick();

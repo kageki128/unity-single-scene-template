@@ -87,6 +87,7 @@ namespace MyProject.Director
             var currentDirector = GetDirector(currentScene);
             await currentDirector.BeforeEnterAsync(ct);
             await currentDirector.EnterAsync(ct);
+            await currentDirector.AfterEnterAsync(ct);
         }
 
         void HandleSceneChangeRequest(SceneType to)
@@ -115,6 +116,7 @@ namespace MyProject.Director
                     fromDirector.ExitAsync(cts.Token),
                     toDirector.EnterAsync(cts.Token)
                 );
+                await toDirector.AfterEnterAsync(cts.Token);
             }
             catch (Exception ex)
             {
