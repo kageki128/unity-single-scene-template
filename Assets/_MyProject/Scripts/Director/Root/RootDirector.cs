@@ -13,9 +13,9 @@ namespace MyProject.Director
             this.rootViewHub = rootViewHub;
         }
 
-        public async UniTask InitializeAsync(CancellationToken cancellationToken)
+        public async UniTask InitializeAsync(CancellationToken ct)
         {
-            await rootViewHub.InitializeAsync(cancellationToken);
+            await rootViewHub.InitializeAsync(ct);
         }
 
         public void Tick()
