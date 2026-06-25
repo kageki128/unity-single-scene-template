@@ -1,6 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MyProject.Core;
+using MyProject.Model;
 using R3;
 
 namespace MyProject.Director

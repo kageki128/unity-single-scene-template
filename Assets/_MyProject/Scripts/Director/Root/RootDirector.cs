@@ -1,21 +1,21 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MyProject.Actor;
+using MyProject.View;
 
 namespace MyProject.Director
 {
     public class RootDirector
     {
-        readonly RootActorHub rootActorHub;
+        readonly RootViewHub rootViewHub;
 
-        public RootDirector(RootActorHub rootActorHub)
+        public RootDirector(RootViewHub rootViewHub)
         {
-            this.rootActorHub = rootActorHub;
+            this.rootViewHub = rootViewHub;
         }
 
         public async UniTask InitializeAsync(CancellationToken cancellationToken)
         {
-            await rootActorHub.InitializeAsync(cancellationToken);
+            await rootViewHub.InitializeAsync(cancellationToken);
         }
 
         public void Tick()

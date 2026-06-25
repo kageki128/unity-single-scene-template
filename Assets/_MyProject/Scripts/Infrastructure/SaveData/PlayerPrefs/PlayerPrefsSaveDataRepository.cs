@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MyProject.Core;
+using MyProject.Model;
 using UnityEngine;
 using Newtonsoft.Json;
 
@@ -11,7 +11,7 @@ namespace MyProject.Infrastructure
     {
         const string SaveDataKey = "save_data";
 
-        public UniTask SaveAsync(SaveDataCore saveData, CancellationToken ct)
+        public UniTask SaveAsync(SaveDataModel saveData, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
@@ -24,17 +24,17 @@ namespace MyProject.Infrastructure
             return UniTask.CompletedTask;
         }
 
-        public UniTask<SaveDataCore> LoadAsync(CancellationToken ct)
+        public UniTask<SaveDataModel> LoadAsync(CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
             if (!PlayerPrefs.HasKey(SaveDataKey))
             {
-                return UniTask.FromResult(new SaveDataCore());
+                return UniTask.FromResult(new SaveDataModel());
             }
 
             var json = PlayerPrefs.GetString(SaveDataKey);
-            var saveData = JsonConvert.DeserializeObject<SaveDataCore>(json);
+            var saveData = JsonConvert.DeserializeObject<SaveDataModel>(json);
             if (saveData == null)
             {
                 throw new InvalidOperationException($"Failed to deserialize save data. key={SaveDataKey}");

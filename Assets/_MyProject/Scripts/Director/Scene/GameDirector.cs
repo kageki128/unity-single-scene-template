@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MyProject.Actor;
-using MyProject.Core;
+using MyProject.View;
+using MyProject.Model;
 using R3;
 
 namespace MyProject.Director
@@ -15,18 +15,18 @@ namespace MyProject.Director
         public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
         readonly Subject<Unit> sceneReloadRequest = new();
 
-        readonly GameActorHub gameActorHub;
+        readonly GameViewHub gameViewHub;
 
         readonly CompositeDisposable disposables = new();
 
-        public GameDirector(GameActorHub gameActorHub)
+        public GameDirector(GameViewHub gameViewHub)
         {
-            this.gameActorHub = gameActorHub;
+            this.gameViewHub = gameViewHub;
         }
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
-            gameActorHub.Initialize();
+            gameViewHub.Initialize();
             await UniTask.CompletedTask;
         }
 
@@ -37,13 +37,13 @@ namespace MyProject.Director
 
         public async UniTask EnterAsync(CancellationToken ct)
         {
-            await gameActorHub.ShowAsync(ct);
+            await gameViewHub.ShowAsync(ct);
         }
 
         public async UniTask AfterEnterAsync(CancellationToken ct)
         {
             disposables.Clear();
-            gameActorHub.ToSelectButtonClicked
+            gameViewHub.ToSelectButtonClicked
                 .Take(1)
                 .Subscribe(_ => sceneChangeRequest.OnNext(SceneType.Select))
                 .AddTo(disposables);
@@ -62,7 +62,7 @@ namespace MyProject.Director
 
         public async UniTask ExitAsync(CancellationToken ct)
         {
-            await gameActorHub.HideAsync(ct);
+            await gameViewHub.HideAsync(ct);
         }
 
         public void Dispose()

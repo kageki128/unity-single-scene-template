@@ -1,5 +1,5 @@
-using MyProject.Actor;
-using MyProject.Core;
+using MyProject.View;
+using MyProject.Model;
 using MyProject.Director;
 using MyProject.Infrastructure;
 using UnityEngine;
@@ -10,35 +10,35 @@ namespace MyProject.CompositionRoot
 {
     public class MainLifeTimeScope : LifetimeScope
     {
-        [Header("Actor")]
-        [SerializeField] RootActorHub rootActorHub;
-        [SerializeField] TitleActorHub titleActorHub;
-        [SerializeField] SelectActorHub selectActorHub;
-        [SerializeField] GameActorHub gameActorHub;
-        [SerializeField] ResultActorHub resultActorHub;
+        [Header("View")]
+        [SerializeField] RootViewHub rootViewHub;
+        [SerializeField] TitleViewHub titleViewHub;
+        [SerializeField] SelectViewHub selectViewHub;
+        [SerializeField] GameViewHub gameViewHub;
+        [SerializeField] ResultViewHub resultViewHub;
         [Header("Config")]
         [SerializeField] GameConfigSO gameConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            RegisterCore(builder);
-            RegisterActor(builder);
+            RegisterModel(builder);
+            RegisterView(builder);
             RegisterDirector(builder);
             RegisterInfrastructure(builder);
         }
 
-        void RegisterCore(IContainerBuilder builder)
+        void RegisterModel(IContainerBuilder builder)
         {
             builder.RegisterInstance(gameConfig);
         }
 
-        void RegisterActor(IContainerBuilder builder)
+        void RegisterView(IContainerBuilder builder)
         {
-            builder.RegisterComponent(rootActorHub);
-            builder.RegisterComponent(titleActorHub);
-            builder.RegisterComponent(selectActorHub);
-            builder.RegisterComponent(gameActorHub);
-            builder.RegisterComponent(resultActorHub);
+            builder.RegisterComponent(rootViewHub);
+            builder.RegisterComponent(titleViewHub);
+            builder.RegisterComponent(selectViewHub);
+            builder.RegisterComponent(gameViewHub);
+            builder.RegisterComponent(resultViewHub);
         }
 
         void RegisterDirector(IContainerBuilder builder)

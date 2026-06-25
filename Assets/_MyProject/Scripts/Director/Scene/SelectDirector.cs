@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MyProject.Actor;
-using MyProject.Core;
+using MyProject.View;
+using MyProject.Model;
 using R3;
 
 namespace MyProject.Director
@@ -15,18 +15,18 @@ namespace MyProject.Director
         public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
         readonly Subject<Unit> sceneReloadRequest = new();
 
-        readonly SelectActorHub selectActorHub;
+        readonly SelectViewHub selectViewHub;
 
         readonly CompositeDisposable disposables = new();
 
-        public SelectDirector(SelectActorHub selectActorHub)
+        public SelectDirector(SelectViewHub selectViewHub)
         {
-            this.selectActorHub = selectActorHub;
+            this.selectViewHub = selectViewHub;
         }
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
-            selectActorHub.Initialize();
+            selectViewHub.Initialize();
             await UniTask.CompletedTask;
         }
 
@@ -37,7 +37,7 @@ namespace MyProject.Director
 
         public async UniTask EnterAsync(CancellationToken ct)
         {
-            await selectActorHub.ShowAsync(ct);
+            await selectViewHub.ShowAsync(ct);
         }
 
         public async UniTask AfterEnterAsync(CancellationToken ct)
@@ -58,7 +58,7 @@ namespace MyProject.Director
 
         public async UniTask ExitAsync(CancellationToken ct)
         {
-            await selectActorHub.HideAsync(ct);
+            await selectViewHub.HideAsync(ct);
         }
 
         public void Dispose()

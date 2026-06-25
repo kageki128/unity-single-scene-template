@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac598068da2fef64c9787dad0f2f39d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActor
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardView
 --- !u!114 &248223900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardTransitionAnimator
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd91423626e678240bc141f41d5e1050, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.GameActorHub
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.GameViewHub
   toSelectButton: {fileID: 858934388}
 --- !u!114 &706006541
 MonoBehaviour:
@@ -1393,12 +1393,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  actorAnimations:
-  - <Actor>k__BackingField: {fileID: 248223899}
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ViewAnimationTimeline
+  viewAnimations:
+  - <View>k__BackingField: {fileID: 248223899}
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
-  - <Actor>k__BackingField: {fileID: 858934388}
+  - <View>k__BackingField: {fileID: 858934388}
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
 --- !u!1 &858934383
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64f67445a03b544495534cdc04d42ab, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ButtonAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ButtonAnimator
   spriteTargets: []
   textTargets: []
   graphicTargets: []
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4c53d37de8218a4bab8c84f5790db77, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.PointerEventObserver
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.PointerEventObserver
 --- !u!61 &858934387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb9b0e795ecdfb244b191e58e5275252, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardButtonActor
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardButtonView
 --- !u!114 &858934389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardTransitionAnimator
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -1825,7 +1825,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d27b4cd3ee44d3c9a4a24e80c1b7b42, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.TitleActorHub
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.TitleViewHub
 --- !u!114 &1007905487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,8 +1837,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  actorAnimations: []
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ViewAnimationTimeline
+  viewAnimations: []
 --- !u!1 &1024991090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac598068da2fef64c9787dad0f2f39d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardActor
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardView
 --- !u!114 &1072198188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,7 +1975,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardTransitionAnimator
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -2285,7 +2285,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7565e8f123724f3ebb97b5b4daa8f832, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ResultActorHub
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ResultViewHub
 --- !u!114 &1316483773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,8 +2297,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  actorAnimations: []
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ViewAnimationTimeline
+  viewAnimations: []
 --- !u!1 &1356142520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2310,7 @@ GameObject:
   - component: {fileID: 1356142521}
   - component: {fileID: 1356142522}
   m_Layer: 0
-  m_Name: Actors
+  m_Name: Views
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e2d3fbab7de734e974c97b429b4766, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.RootActorHub
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.RootViewHub
   scrollBackground: {fileID: 1482213283}
   audioSlider: {fileID: 2027696808}
   audioButton: {fileID: 1669529497}
@@ -2395,7 +2395,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcbae03c731faea4bba055adc514d93b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.AudioPlayer
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.AudioPlayer
   seAudioSource: {fileID: 1091782873}
   bgmAudioSource: {fileID: 341459405}
   audioMixer: {fileID: 24100000, guid: 8c41a9b04d5628a4d89801de06ba4650, type: 2}
@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1eb4d2a6ff89d645986096c9197c4bc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ScrollBackgroundActor
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ScrollBackgroundView
   image: {fileID: 1799915406}
   angleDegrees: 180
   speed: 80
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afa3d4fa8d50d1d4bac7b86a8cde7191, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.PointerClickObserver
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.PointerClickObserver
 --- !u!1 &1656776576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,11 +2854,11 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  rootActorHub: {fileID: 1356142522}
-  titleActorHub: {fileID: 1007905486}
-  selectActorHub: {fileID: 2142052735}
-  gameActorHub: {fileID: 706006540}
-  resultActorHub: {fileID: 1316483772}
+  rootViewHub: {fileID: 1356142522}
+  titleViewHub: {fileID: 1007905486}
+  selectViewHub: {fileID: 2142052735}
+  gameViewHub: {fileID: 706006540}
+  resultViewHub: {fileID: 1316483772}
   gameConfig: {fileID: 11400000, guid: 9415f96bd8527e641b288f2147ddd50b, type: 2}
 --- !u!1 &1669529495
 GameObject:
@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55106ee501395544fb8ae19f4c32e5a5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.AudioButtonActor
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.AudioButtonView
   iconImage: {fileID: 400058398}
   volumeOnIcon: {fileID: 21300000, guid: 744bad611fa940b448c5e18ca3819ba2, type: 3}
   volumeOffIcon: {fileID: 21300000, guid: 57cce06f223069d40af1a6ca357ffa5c, type: 3}
@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardTransitionAnimator
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -2971,7 +2971,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a64f67445a03b544495534cdc04d42ab, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ButtonAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ButtonAnimator
   spriteTargets: []
   textTargets: []
   graphicTargets: []
@@ -3018,7 +3018,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4c53d37de8218a4bab8c84f5790db77, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.PointerEventObserver
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.PointerEventObserver
 --- !u!61 &1669529501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3326,7 +3326,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f6e7034f67b17e4fbed87963182adef, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardSliderActor
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardSliderView
   slider: {fileID: 972869249}
   handleClickObserver: {fileID: 1606951041}
 --- !u!114 &2027696809
@@ -3340,7 +3340,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.StandardTransitionAnimator
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -3418,7 +3418,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06e968e5f7244502897f982ad8f41fc7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.SelectActorHub
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.SelectViewHub
 --- !u!114 &2142052736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3430,9 +3430,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  actorAnimations:
-  - <Actor>k__BackingField: {fileID: 1072198187}
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.ViewAnimationTimeline
+  viewAnimations:
+  - <View>k__BackingField: {fileID: 1072198187}
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
 --- !u!1660057539 &9223372036854775807

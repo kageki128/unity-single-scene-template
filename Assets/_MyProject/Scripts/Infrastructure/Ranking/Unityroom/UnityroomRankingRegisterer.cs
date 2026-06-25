@@ -1,6 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MyProject.Core;
+using MyProject.Model;
 using UnityEngine;
 using unityroom.Api;
 
@@ -8,7 +8,7 @@ namespace MyProject.Infrastructure
 {
     public class UnityroomRankingRegisterer : IRankingRegisterer
     {
-        public UniTask RegisterAsync(ResultCore result, CancellationToken ct)
+        public UniTask RegisterAsync(ResultModel result, CancellationToken ct)
         {
             // Unityroomのランキング登録処理をここに実装する
             // UnityroomApiClient.Instance.SendScore();
