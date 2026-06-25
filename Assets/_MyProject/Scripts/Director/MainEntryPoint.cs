@@ -12,7 +12,7 @@ namespace MyProject.Director
     public class MainEntryPoint : IAsyncStartable, ITickable, IDisposable
     {
         readonly RootDirector rootDirector;
-        readonly Dictionary<SceneType, ISceneDirector> sceneDirectors = new();
+        readonly Dictionary<SceneType, ISceneDirector> directors = new();
 
         readonly SemaphoreSlim sceneChangeSemaphore = new(1, 1);
         readonly CompositeDisposable disposables = new();
@@ -23,18 +23,18 @@ namespace MyProject.Director
         (
             GameConfigSO gameConfig,
             RootDirector rootDirector,
-            TitleSceneDirector titleSceneDirector,
-            SelectSceneDirector selectSceneDirector,
-            GameSceneDirector gameSceneDirector,
-            ResultSceneDirector resultSceneDirector
+            TitleDirector titleDirector,
+            SelectDirector selectDirector,
+            GameDirector gameDirector,
+            ResultDirector resultDirector
         )
         {
             this.rootDirector = rootDirector;
             currentScene = gameConfig.InitialSceneType;
-            sceneDirectors.Add(SceneType.Title, titleSceneDirector);
-            sceneDirectors.Add(SceneType.Select, selectSceneDirector);
-            sceneDirectors.Add(SceneType.Game, gameSceneDirector);
-            sceneDirectors.Add(SceneType.Result, resultSceneDirector);
+            directors.Add(SceneType.Title, titleDirector);
+            directors.Add(SceneType.Select, selectDirector);
+            directors.Add(SceneType.Game, gameDirector);
+            directors.Add(SceneType.Result, resultDirector);
         }
 
         public async UniTask StartAsync(CancellationToken ct)
@@ -47,7 +47,7 @@ namespace MyProject.Director
         {
             rootDirector.Tick();
 
-            var director = GetSceneDirector(currentScene);
+            var director = GetDirector(currentScene);
             director.Tick();
         }
 
@@ -63,30 +63,30 @@ namespace MyProject.Director
         {
             disposables.Clear();
 
-            foreach (var director in sceneDirectors.Values)
+            foreach (var item in directors.Values)
             {
-                await director.InitializeAsync(ct);
+                await item.InitializeAsync(ct);
             }
 
             // シーンチェンジリクエストを購読
-            var sceneChangeRequests = sceneDirectors.Values
-                .Select(director => director.SceneChangeRequest)
+            var sceneChangeRequests = directors.Values
+                .Select(item => item.SceneChangeRequest)
                 .ToArray();
             Observable.Merge(sceneChangeRequests)
                 .Subscribe(HandleSceneChangeRequest)
                 .AddTo(disposables);
 
-            var sceneReloadRequests = sceneDirectors.Values
-                .Select(director => director.SceneReloadRequest)
+            var sceneReloadRequests = directors.Values
+                .Select(item => item.SceneReloadRequest)
                 .ToArray();
             Observable.Merge(sceneReloadRequests)
                 .Subscribe(_ => HandleSceneChangeRequest(currentScene))
                 .AddTo(disposables);
 
             // 初期シーンを起動
-            var sceneDirector = GetSceneDirector(currentScene);
-            await sceneDirector.BeforeEnterAsync(ct);
-            await sceneDirector.EnterAsync(ct);
+            var currentDirector = GetDirector(currentScene);
+            await currentDirector.BeforeEnterAsync(ct);
+            await currentDirector.EnterAsync(ct);
         }
 
         void HandleSceneChangeRequest(SceneType to)
@@ -103,8 +103,8 @@ namespace MyProject.Director
 
         async UniTask ExecuteSceneTransitionAsync(SceneType from, SceneType to)
         {
-            var fromDirector = GetSceneDirector(from);
-            var toDirector = GetSceneDirector(to);
+            var fromDirector = GetDirector(from);
+            var toDirector = GetDirector(to);
 
             try
             {
@@ -135,14 +135,14 @@ namespace MyProject.Director
             }
         }
 
-        ISceneDirector GetSceneDirector(SceneType sceneType)
+        ISceneDirector GetDirector(SceneType sceneType)
         {
-            if (sceneDirectors.TryGetValue(sceneType, out var director))
+            if (directors.TryGetValue(sceneType, out var director))
             {
                 return director;
             }
 
-            throw new InvalidOperationException($"SceneDirector not found for SceneType: {sceneType}");
+            throw new InvalidOperationException($"Director not found for SceneType: {sceneType}");
         }
     }
 }

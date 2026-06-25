@@ -12,12 +12,12 @@ namespace MyProject.Actor
 
         [SerializeField] StandardButtonActor toSelectButton;
 
-        readonly GameActionsObserver gameActionsObserver = new();
-
+        GameActionsObserver gameActionsObserver;
         ActorAnimationTimeline animationTimeline;
 
         public override void Initialize()
         {
+            gameActionsObserver ??= new GameActionsObserver();
             animationTimeline = GetComponent<ActorAnimationTimeline>();
 
             gameActionsObserver.Disable();
@@ -41,7 +41,7 @@ namespace MyProject.Actor
 
         void OnDestroy()
         {
-            gameActionsObserver.Dispose();
+            gameActionsObserver?.Dispose();
         }
     }
 }

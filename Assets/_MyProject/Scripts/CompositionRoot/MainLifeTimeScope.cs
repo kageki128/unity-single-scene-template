@@ -45,10 +45,10 @@ namespace MyProject.CompositionRoot
         {
             builder.RegisterEntryPoint<MainEntryPoint>(Lifetime.Singleton);
             builder.Register<RootDirector>(Lifetime.Singleton);
-            builder.Register<TitleSceneDirector>(Lifetime.Singleton);
-            builder.Register<SelectSceneDirector>(Lifetime.Singleton);
-            builder.Register<GameSceneDirector>(Lifetime.Singleton);
-            builder.Register<ResultSceneDirector>(Lifetime.Singleton);
+            builder.Register<TitleDirector>(Lifetime.Singleton);
+            builder.Register<SelectDirector>(Lifetime.Singleton);
+            builder.Register<GameDirector>(Lifetime.Singleton);
+            builder.Register<ResultDirector>(Lifetime.Singleton);
         }
 
         void RegisterInfrastructure(IContainerBuilder builder)

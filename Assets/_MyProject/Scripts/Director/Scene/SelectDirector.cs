@@ -7,7 +7,7 @@ using R3;
 
 namespace MyProject.Director
 {
-    public class GameSceneDirector : ISceneDirector, IDisposable
+    public class SelectDirector : ISceneDirector, IDisposable
     {
         public Observable<SceneType> SceneChangeRequest => sceneChangeRequest;
         readonly Subject<SceneType> sceneChangeRequest = new();
@@ -15,19 +15,19 @@ namespace MyProject.Director
         public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
         readonly Subject<Unit> sceneReloadRequest = new();
 
-        readonly GameActorHub gameActorHub;
+        readonly SelectActorHub selectActorHub;
 
         readonly CompositeDisposable disposables = new();
 
-        public GameSceneDirector(GameActorHub gameActorHub)
+        public SelectDirector(SelectActorHub selectActorHub)
         {
-            this.gameActorHub = gameActorHub;
+            this.selectActorHub = selectActorHub;
         }
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
-            gameActorHub.Initialize();
+            selectActorHub.Initialize();
             await UniTask.CompletedTask;
         }
 
@@ -38,7 +38,7 @@ namespace MyProject.Director
 
         public async UniTask EnterAsync(CancellationToken ct)
         {
-            await gameActorHub.ShowAsync(ct);
+            await selectActorHub.ShowAsync(ct);
             HandleEnter();
         }
 
@@ -54,7 +54,7 @@ namespace MyProject.Director
 
         public async UniTask ExitAsync(CancellationToken ct)
         {
-            await gameActorHub.HideAsync(ct);
+            await selectActorHub.HideAsync(ct);
         }
 
         public void Dispose()
@@ -67,10 +67,6 @@ namespace MyProject.Director
         void HandleEnter()
         {
             disposables.Clear();
-            gameActorHub.ToSelectButtonClicked
-                .Take(1)
-                .Subscribe(_ => sceneChangeRequest.OnNext(SceneType.Select))
-                .AddTo(disposables);
         }
     }
 }

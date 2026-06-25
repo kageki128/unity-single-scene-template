@@ -7,12 +7,12 @@ namespace MyProject.Actor
     [RequireComponent(typeof(ActorAnimationTimeline))]
     public class ResultActorHub : SceneActorHubBase
     {
-        readonly ResultActionsObserver resultActionsObserver = new();
-
+        ResultActionsObserver resultActionsObserver;
         ActorAnimationTimeline animationTimeline;
 
         public override void Initialize()
         {
+            resultActionsObserver ??= new ResultActionsObserver();
             animationTimeline = GetComponent<ActorAnimationTimeline>();
 
             resultActionsObserver.Disable();
@@ -36,7 +36,7 @@ namespace MyProject.Actor
 
         void OnDestroy()
         {
-            resultActionsObserver.Dispose();
+            resultActionsObserver?.Dispose();
         }
     }
 }

@@ -7,7 +7,7 @@ using R3;
 
 namespace MyProject.Director
 {
-    public class ResultSceneDirector : ISceneDirector, IDisposable
+    public class TitleDirector : ISceneDirector, IDisposable
     {
         public Observable<SceneType> SceneChangeRequest => sceneChangeRequest;
         readonly Subject<SceneType> sceneChangeRequest = new();
@@ -15,19 +15,19 @@ namespace MyProject.Director
         public Observable<Unit> SceneReloadRequest => sceneReloadRequest;
         readonly Subject<Unit> sceneReloadRequest = new();
 
-        readonly ResultActorHub resultActorHub;
+        readonly TitleActorHub titleActorHub;
 
         readonly CompositeDisposable disposables = new();
 
-        public ResultSceneDirector(ResultActorHub resultActorHub)
+        public TitleDirector(TitleActorHub titleActorHub)
         {
-            this.resultActorHub = resultActorHub;
+            this.titleActorHub = titleActorHub;
         }
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
-            resultActorHub.Initialize();
+            titleActorHub.Initialize();
             await UniTask.CompletedTask;
         }
 
@@ -38,7 +38,7 @@ namespace MyProject.Director
 
         public async UniTask EnterAsync(CancellationToken ct)
         {
-            await resultActorHub.ShowAsync(ct);
+            await titleActorHub.ShowAsync(ct);
             HandleEnter();
         }
 
@@ -54,7 +54,7 @@ namespace MyProject.Director
 
         public async UniTask ExitAsync(CancellationToken ct)
         {
-            await resultActorHub.HideAsync(ct);
+            await titleActorHub.HideAsync(ct);
         }
 
         public void Dispose()
