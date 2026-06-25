@@ -54,7 +54,7 @@ R3の公式思想に沿って、状態公開とイベント通知をシンプル
 ## 最小例
 
 ```csharp
-public class ScoreCore : IDisposable
+public class ScoreModel : IDisposable
 {
     public ReadOnlyReactiveProperty<int> Value => value;
     readonly ReactiveProperty<int> value = new(0);
@@ -65,9 +65,9 @@ public class ScoreCore : IDisposable
 
 readonly CompositeDisposable disposables = new();
 
-buttonActor.Clicked
+buttonView.Clicked
     .Take(1)
-    .Subscribe(_ => sceneCore.RequestSceneChange(SceneType.Select))
+    .Subscribe(_ => sceneModel.RequestSceneChange(SceneType.Select))
     .AddTo(disposables);
 ```
 

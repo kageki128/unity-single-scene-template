@@ -55,7 +55,7 @@
 
 - 主用途: 破棄連動の安全な停止、複数Handleの一括管理
 - 主要API: `AddTo(gameObject|component)`, `CompositeMotionHandle`
-- 注意点: Actor再入時の二重再生防止には `MotionHandle` 保持 + `TryCancel()` を併用する
+- 注意点: View再入時の二重再生防止には `MotionHandle` 保持 + `TryCancel()` を併用する
 
 ## 9. エディタ再生と LitMotion.Animation
 

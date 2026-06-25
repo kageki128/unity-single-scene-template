@@ -56,12 +56,12 @@ VContainerの公式思想に沿って、依存登録・解決・ライフサイ�
 ```csharp
 public sealed class MainLifetimeScope : LifetimeScope
 {
-    [SerializeField] RootActorHub rootActorHub;
+    [SerializeField] RootViewHub rootViewHub;
 
     protected override void Configure(IContainerBuilder builder)
     {
-        builder.Register<SceneCore>(Lifetime.Singleton);
-        builder.RegisterComponent(rootActorHub);
+        builder.Register<SceneModel>(Lifetime.Singleton);
+        builder.RegisterComponent(rootViewHub);
         builder.RegisterEntryPoint<MainEntryPoint>();
     }
 }
