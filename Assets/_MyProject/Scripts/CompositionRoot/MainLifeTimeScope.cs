@@ -5,6 +5,7 @@ using MyProject.Infrastructure;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using unityroom.Api;
 
 namespace MyProject.CompositionRoot
 {
@@ -16,8 +17,12 @@ namespace MyProject.CompositionRoot
         [SerializeField] SelectViewHub selectViewHub;
         [SerializeField] GameViewHub gameViewHub;
         [SerializeField] ResultViewHub resultViewHub;
+
         [Header("Config")]
         [SerializeField] GameConfigSO gameConfig;
+
+        [Header("Infrastructure")]
+        [SerializeField] UnityroomApiClient unityroomApiClient;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -34,11 +39,11 @@ namespace MyProject.CompositionRoot
 
         void RegisterView(IContainerBuilder builder)
         {
-            builder.RegisterComponent(rootViewHub);
-            builder.RegisterComponent(titleViewHub);
-            builder.RegisterComponent(selectViewHub);
-            builder.RegisterComponent(gameViewHub);
-            builder.RegisterComponent(resultViewHub);
+            builder.RegisterInstance(rootViewHub);
+            builder.RegisterInstance(titleViewHub);
+            builder.RegisterInstance(selectViewHub);
+            builder.RegisterInstance(gameViewHub);
+            builder.RegisterInstance(resultViewHub);
         }
 
         void RegisterDirector(IContainerBuilder builder)
@@ -57,6 +62,7 @@ namespace MyProject.CompositionRoot
                 .As<ISaveDataRepository>();
             builder.Register<UnityroomRankingRegisterer>(Lifetime.Singleton)
                 .As<IRankingRegisterer>();
+            builder.RegisterInstance(unityroomApiClient);
         }
     }
 }

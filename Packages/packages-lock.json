@@ -20,20 +20,6 @@
       },
       "hash": "6cae9f18a49de0259904268ca76cf12cb89d1fc5"
     },
-    "com.cysharp.messagepipe": {
-      "version": "1.8.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
-    },
-    "com.cysharp.messagepipe.vcontainer": {
-      "version": "1.8.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
-    },
     "com.cysharp.r3": {
       "version": "1.3.0",
       "depth": 0,

@@ -66,7 +66,6 @@ made from [Unity Single Scene Template](https://github.com/kageki128/unity-singl
 
 - UniTask
 - R3 (+ Observable Collection)
-- MessagePipe
 - VContainer
 - LitMotion (+ LitMotion.Animation)
 - Unityroom Client Library

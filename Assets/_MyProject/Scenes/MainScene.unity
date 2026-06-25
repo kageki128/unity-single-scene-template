@@ -1084,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5323818951622561360, guid: 00ae2bf8c8a624ed38161cab9eeda7f7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2329,10 +2329,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1600499823}
   - {fileID: 519420032}
   - {fileID: 1200051142}
   - {fileID: 1906196648}
+  - {fileID: 1600499823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1356142522
@@ -2860,6 +2860,7 @@ MonoBehaviour:
   gameViewHub: {fileID: 706006540}
   resultViewHub: {fileID: 1316483772}
   gameConfig: {fileID: 11400000, guid: 9415f96bd8527e641b288f2147ddd50b, type: 2}
+  unityroomApiClient: {fileID: 1719254032}
 --- !u!1 &1669529495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,6 +3066,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1719254032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4336439062694548224, guid: 00ae2bf8c8a624ed38161cab9eeda7f7, type: 3}
+  m_PrefabInstance: {fileID: 517845329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0b2d9b9a77e4cedb5c8ab46e4b0d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1799915404
 GameObject:
   m_ObjectHideFlags: 0

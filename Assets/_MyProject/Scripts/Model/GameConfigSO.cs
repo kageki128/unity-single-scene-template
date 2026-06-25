@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MyProject.Model
 {
-    [CreateAssetMenu(fileName = "GameConfig", menuName = "MyProject/GameConfig")]
+    [CreateAssetMenu(fileName = "GameConfig", menuName = "MyProject/GameConfigSO")]
     public class GameConfigSO : ScriptableObject
     {
         [field: SerializeField]
