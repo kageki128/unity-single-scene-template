@@ -213,22 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
-  initialShowSettings:
-    <DurationSeconds>k__BackingField: 0.3
-    <UseCanvasGroupForFade>k__BackingField: 1
-    <Move>k__BackingField:
-      <Distance>k__BackingField: 3
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Rotation>k__BackingField:
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Scale>k__BackingField:
-      <Multiplier>k__BackingField: 1
-      <Ease>k__BackingField: 8
-    <Fade>k__BackingField:
-      <IsFade>k__BackingField: 1
-      <Ease>k__BackingField: 8
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -1410,14 +1394,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  useInitialShow: 0
   actorAnimations:
   - <Actor>k__BackingField: {fileID: 248223899}
-    <InitialShowStartSeconds>k__BackingField: 1
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
   - <Actor>k__BackingField: {fileID: 858934388}
-    <InitialShowStartSeconds>k__BackingField: 1
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
 --- !u!1 &858934383
@@ -1587,22 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
-  initialShowSettings:
-    <DurationSeconds>k__BackingField: 0.3
-    <UseCanvasGroupForFade>k__BackingField: 1
-    <Move>k__BackingField:
-      <Distance>k__BackingField: 3
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Rotation>k__BackingField:
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Scale>k__BackingField:
-      <Multiplier>k__BackingField: 1
-      <Ease>k__BackingField: 8
-    <Fade>k__BackingField:
-      <IsFade>k__BackingField: 1
-      <Ease>k__BackingField: 8
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -1873,7 +1838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  useInitialShow: 0
   actorAnimations: []
 --- !u!1 &1024991090
 GameObject:
@@ -2012,22 +1976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
-  initialShowSettings:
-    <DurationSeconds>k__BackingField: 0.3
-    <UseCanvasGroupForFade>k__BackingField: 1
-    <Move>k__BackingField:
-      <Distance>k__BackingField: 3
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Rotation>k__BackingField:
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Scale>k__BackingField:
-      <Multiplier>k__BackingField: 1
-      <Ease>k__BackingField: 8
-    <Fade>k__BackingField:
-      <IsFade>k__BackingField: 1
-      <Ease>k__BackingField: 8
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -2350,7 +2298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  useInitialShow: 0
   actorAnimations: []
 --- !u!1 &1356142520
 GameObject:
@@ -2981,22 +2928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
-  initialShowSettings:
-    <DurationSeconds>k__BackingField: 0.3
-    <UseCanvasGroupForFade>k__BackingField: 1
-    <Move>k__BackingField:
-      <Distance>k__BackingField: 3
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Rotation>k__BackingField:
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Scale>k__BackingField:
-      <Multiplier>k__BackingField: 1
-      <Ease>k__BackingField: 8
-    <Fade>k__BackingField:
-      <IsFade>k__BackingField: 1
-      <Ease>k__BackingField: 8
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -3410,22 +3341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab03d9e120ecff84eac713575f14ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.StandardTransitionAnimator
-  initialShowSettings:
-    <DurationSeconds>k__BackingField: 0.3
-    <UseCanvasGroupForFade>k__BackingField: 1
-    <Move>k__BackingField:
-      <Distance>k__BackingField: 3
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Rotation>k__BackingField:
-      <AngleDegrees>k__BackingField: 0
-      <Ease>k__BackingField: 8
-    <Scale>k__BackingField:
-      <Multiplier>k__BackingField: 1
-      <Ease>k__BackingField: 8
-    <Fade>k__BackingField:
-      <IsFade>k__BackingField: 1
-      <Ease>k__BackingField: 8
   showSettings:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
@@ -3516,10 +3431,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6f7fde9c557343b45b21972f80b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.ActorAnimationTimeline
-  useInitialShow: 0
   actorAnimations:
   - <Actor>k__BackingField: {fileID: 1072198187}
-    <InitialShowStartSeconds>k__BackingField: 0
     <ShowStartSeconds>k__BackingField: 0
     <HideStartSeconds>k__BackingField: 0
 --- !u!1660057539 &9223372036854775807

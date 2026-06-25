@@ -19,7 +19,17 @@ namespace MyProject.Actor
 
             InitializeActors();
             BindAudioActors();
-            await InitialShowAsync(ct);
+            await ShowAsync(ct);
+        }
+
+        UniTask ShowAsync(CancellationToken ct)
+        {
+            return UniTask.WhenAll
+            (
+                scrollBackground.ShowAsync(ct),
+                audioSlider.ShowAsync(ct),
+                audioButton.ShowAsync(ct)
+            );
         }
 
         void InitializeActors()
@@ -27,16 +37,6 @@ namespace MyProject.Actor
             scrollBackground.Initialize();
             audioSlider.Initialize();
             audioButton.Initialize();
-        }
-
-        UniTask InitialShowAsync(CancellationToken ct)
-        {
-            return UniTask.WhenAll
-            (
-                scrollBackground.InitialShowAsync(ct),
-                audioSlider.InitialShowAsync(ct),
-                audioButton.InitialShowAsync(ct)
-            );
         }
 
         void BindAudioActors()

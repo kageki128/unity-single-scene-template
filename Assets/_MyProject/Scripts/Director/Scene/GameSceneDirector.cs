@@ -36,12 +36,6 @@ namespace MyProject.Director
             await UniTask.CompletedTask;
         }
 
-        public async UniTask InitialEnterAsync(CancellationToken ct)
-        {
-            await gameActorHub.InitialShowAsync(ct);
-            HandleEnter();
-        }
-
         public async UniTask EnterAsync(CancellationToken ct)
         {
             await gameActorHub.ShowAsync(ct);

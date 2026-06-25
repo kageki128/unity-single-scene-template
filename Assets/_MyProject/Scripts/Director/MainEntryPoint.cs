@@ -84,9 +84,9 @@ namespace MyProject.Director
                 .AddTo(disposables);
 
             // 初期シーンを起動
-            var initialSceneDirector = GetSceneDirector(currentScene);
-            await initialSceneDirector.BeforeEnterAsync(ct);
-            await initialSceneDirector.InitialEnterAsync(ct);
+            var sceneDirector = GetSceneDirector(currentScene);
+            await sceneDirector.BeforeEnterAsync(ct);
+            await sceneDirector.EnterAsync(ct);
         }
 
         void HandleSceneChangeRequest(SceneType to)
