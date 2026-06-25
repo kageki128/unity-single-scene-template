@@ -16,7 +16,7 @@ namespace MyProject.Actor
         class MoveSettings
         {
             [field: SerializeField, Min(0f)]
-            public float Distance { get; private set; } = 3f;
+            public float Distance { get; private set; } = 0f;
 
             [field: SerializeField]
             public float AngleDegrees { get; private set; } = 0f;

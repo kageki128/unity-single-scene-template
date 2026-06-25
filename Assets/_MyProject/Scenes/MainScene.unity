@@ -217,7 +217,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -233,7 +233,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1232,7 +1232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1487580002}
+  m_Father: {fileID: 1356142521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -1367,7 +1367,7 @@ Transform:
   m_Children:
   - {fileID: 248223898}
   - {fileID: 858934384}
-  m_Father: {fileID: 1356142521}
+  m_Father: {fileID: 1600499823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &706006540
 MonoBehaviour:
@@ -1572,7 +1572,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -1588,7 +1588,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -1812,7 +1812,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1356142521}
+  m_Father: {fileID: 1600499823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1007905486
 MonoBehaviour:
@@ -1980,7 +1980,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -1996,7 +1996,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -2170,7 +2170,7 @@ RectTransform:
   m_Children:
   - {fileID: 2027696807}
   - {fileID: 1669529496}
-  m_Father: {fileID: 1487580002}
+  m_Father: {fileID: 1356142521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2272,7 +2272,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1356142521}
+  m_Father: {fileID: 1600499823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1316483772
 MonoBehaviour:
@@ -2308,6 +2308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1356142521}
+  - component: {fileID: 1356142522}
   m_Layer: 0
   m_Name: Actors
   m_TagString: Untagged
@@ -2328,13 +2329,27 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1487580002}
-  - {fileID: 1007905485}
-  - {fileID: 2142052734}
-  - {fileID: 706006539}
-  - {fileID: 1316483771}
+  - {fileID: 1600499823}
+  - {fileID: 519420032}
+  - {fileID: 1200051142}
+  - {fileID: 1906196648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1356142522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356142520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e2d3fbab7de734e974c97b429b4766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.RootActorHub
+  scrollBackground: {fileID: 1482213283}
+  audioSlider: {fileID: 2027696808}
+  audioButton: {fileID: 1669529497}
 --- !u!1 &1371877424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,56 +2455,6 @@ MonoBehaviour:
   angleDegrees: 180
   speed: 80
   generateTilesInEditor: 0
---- !u!1 &1487580001
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1487580002}
-  - component: {fileID: 1487580003}
-  m_Layer: 0
-  m_Name: Root
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1487580002
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487580001}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 519420032}
-  - {fileID: 1200051142}
-  - {fileID: 1906196648}
-  m_Father: {fileID: 1356142521}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1487580003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487580001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e2d3fbab7de734e974c97b429b4766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MyProject.Actor::MyProject.Actor.RootActorHub
-  scrollBackground: {fileID: 1482213283}
-  audioSlider: {fileID: 2027696808}
-  audioButton: {fileID: 1669529497}
 --- !u!1 &1505967681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,6 +2636,41 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1600499822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1600499823}
+  m_Layer: 0
+  m_Name: Scene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1600499823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600499822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1007905485}
+  - {fileID: 2142052734}
+  - {fileID: 706006539}
+  - {fileID: 1316483771}
+  m_Father: {fileID: 1356142521}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606951035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,7 +2854,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  rootActorHub: {fileID: 1487580003}
+  rootActorHub: {fileID: 1356142522}
   titleActorHub: {fileID: 1007905486}
   selectActorHub: {fileID: 2142052735}
   gameActorHub: {fileID: 706006540}
@@ -2948,7 +2948,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -3172,7 +3172,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1482213282}
-  m_Father: {fileID: 1487580002}
+  m_Father: {fileID: 1356142521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3345,7 +3345,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -3361,7 +3361,7 @@ MonoBehaviour:
     <DurationSeconds>k__BackingField: 0.3
     <UseCanvasGroupForFade>k__BackingField: 1
     <Move>k__BackingField:
-      <Distance>k__BackingField: 3
+      <Distance>k__BackingField: 0
       <AngleDegrees>k__BackingField: 0
       <Ease>k__BackingField: 8
     <Rotation>k__BackingField:
@@ -3405,7 +3405,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1072198186}
-  m_Father: {fileID: 1356142521}
+  m_Father: {fileID: 1600499823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2142052735
 MonoBehaviour:
