@@ -2,7 +2,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using R3;
 using UnityEngine;
-using VContainer;
 
 namespace MyProject.Actor
 {
@@ -13,14 +12,9 @@ namespace MyProject.Actor
 
         [SerializeField] StandardButtonActor toSelectButton;
 
-        ActorAnimationTimeline animationTimeline;
-        GameActionsObserver gameActionsObserver;
+        readonly GameActionsObserver gameActionsObserver = new();
 
-        [Inject]
-        public void Construct(GameActionsObserver gameActionsObserver)
-        {
-            this.gameActionsObserver = gameActionsObserver;
-        }
+        ActorAnimationTimeline animationTimeline;
 
         public override void Initialize()
         {
@@ -50,6 +44,11 @@ namespace MyProject.Actor
             gameActionsObserver.Disable();
             await animationTimeline.HideAsync(ct);
             gameObject.SetActive(false);
+        }
+
+        void OnDestroy()
+        {
+            gameActionsObserver.Dispose();
         }
     }
 }

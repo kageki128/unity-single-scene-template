@@ -9,10 +9,7 @@ namespace MyProject.Actor
         public abstract void Enable();
         public abstract void Disable();
 
-        public void Dispose()
-        {
-            Disable();
-        }
+        public abstract void Dispose();
 
         protected static Observable<InputAction.CallbackContext> ObserveStarted(InputAction action)
         {

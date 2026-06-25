@@ -2,21 +2,22 @@ namespace MyProject.Actor
 {
     public class SelectActionsObserver : ActionsObserverBase
     {
-        readonly SelectActions.MainActions mainActions;
-
-        public SelectActionsObserver(SelectActions selectActions)
-        {
-            mainActions = selectActions.Main;
-        }
+        SelectActions.MainActions MainActions => selectActions.Main;
+        readonly SelectActions selectActions = new();
 
         public override void Enable()
         {
-            mainActions.Enable();
+            MainActions.Enable();
         }
 
         public override void Disable()
         {
-            mainActions.Disable();
+            MainActions.Disable();
+        }
+
+        public override void Dispose()
+        {
+            selectActions.Dispose();
         }
     }
 }

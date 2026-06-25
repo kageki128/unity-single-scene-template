@@ -1,21 +1,15 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using VContainer;
 
 namespace MyProject.Actor
 {
     [RequireComponent(typeof(ActorAnimationTimeline))]
     public class SelectActorHub : SceneActorHubBase
     {
-        ActorAnimationTimeline animationTimeline;
-        SelectActionsObserver selectActionsObserver;
+        readonly SelectActionsObserver selectActionsObserver = new();
 
-        [Inject]
-        public void Construct(SelectActionsObserver selectActionsObserver)
-        {
-            this.selectActionsObserver = selectActionsObserver;
-        }
+        ActorAnimationTimeline animationTimeline;
 
         public override void Initialize()
         {
@@ -45,6 +39,11 @@ namespace MyProject.Actor
             selectActionsObserver.Disable();
             await animationTimeline.HideAsync(ct);
             gameObject.SetActive(false);
+        }
+
+        void OnDestroy()
+        {
+            selectActionsObserver.Dispose();
         }
     }
 }

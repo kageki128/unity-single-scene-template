@@ -2,21 +2,22 @@ namespace MyProject.Actor
 {
     public class GameActionsObserver : ActionsObserverBase
     {
-        readonly GameActions.MainActions mainActions;
-
-        public GameActionsObserver(GameActions gameActions)
-        {
-            mainActions = gameActions.Main;
-        }
+        GameActions.MainActions MainActions => gameActions.Main;
+        readonly GameActions gameActions = new();
 
         public override void Enable()
         {
-            mainActions.Enable();
+            MainActions.Enable();
         }
 
         public override void Disable()
         {
-            mainActions.Disable();
+            MainActions.Disable();
+        }
+
+        public override void Dispose()
+        {
+            gameActions.Dispose();
         }
     }
 }

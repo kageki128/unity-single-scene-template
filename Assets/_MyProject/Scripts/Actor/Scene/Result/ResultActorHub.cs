@@ -1,21 +1,15 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using VContainer;
 
 namespace MyProject.Actor
 {
     [RequireComponent(typeof(ActorAnimationTimeline))]
     public class ResultActorHub : SceneActorHubBase
     {
-        ActorAnimationTimeline animationTimeline;
-        ResultActionsObserver resultActionsObserver;
+        readonly ResultActionsObserver resultActionsObserver = new();
 
-        [Inject]
-        public void Construct(ResultActionsObserver resultActionsObserver)
-        {
-            this.resultActionsObserver = resultActionsObserver;
-        }
+        ActorAnimationTimeline animationTimeline;
 
         public override void Initialize()
         {
@@ -45,6 +39,11 @@ namespace MyProject.Actor
             resultActionsObserver.Disable();
             await animationTimeline.HideAsync(ct);
             gameObject.SetActive(false);
+        }
+
+        void OnDestroy()
+        {
+            resultActionsObserver.Dispose();
         }
     }
 }
