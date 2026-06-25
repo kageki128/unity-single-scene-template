@@ -1,19 +1,25 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MyProject.Model;
-using UnityEngine;
 using unityroom.Api;
 
 namespace MyProject.Infrastructure
 {
     public class UnityroomRankingRegisterer : IRankingRegisterer
     {
-        public UniTask RegisterAsync(ResultModel result, CancellationToken ct)
-        {
-            // Unityroomのランキング登録処理をここに実装する
-            // UnityroomApiClient.Instance.SendScore();
+        const int BoardNum = 1;
+        const ScoreboardWriteMode WriteMode = ScoreboardWriteMode.HighScoreDesc;
 
-            Debug.Log($"[UnityroomRankingRegisterer] Registered score to Unityroom ranking: {result}");
+        readonly IUnityroomApiClient unityroomApiClient;
+
+        public UnityroomRankingRegisterer(IUnityroomApiClient unityroomApiClient)
+        {
+            this.unityroomApiClient = unityroomApiClient;
+        }
+
+        public UniTask RegisterAsync(RankingData rankingData, CancellationToken ct)
+        {
+            unityroomApiClient.SendScore(BoardNum, rankingData.Score, WriteMode);
 
             return UniTask.CompletedTask;
         }

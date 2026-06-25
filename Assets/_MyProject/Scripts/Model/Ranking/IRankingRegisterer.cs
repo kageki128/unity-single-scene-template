@@ -5,6 +5,6 @@ namespace MyProject.Model
 {
     public interface IRankingRegisterer
     {
-        UniTask RegisterAsync(ResultModel result, CancellationToken ct);
+        UniTask RegisterAsync(RankingData rankingData, CancellationToken ct);
     }
 }
