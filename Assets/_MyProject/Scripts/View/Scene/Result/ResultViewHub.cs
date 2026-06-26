@@ -36,7 +36,7 @@ namespace MyProject.View
 
         void OnDestroy()
         {
-            resultActionsObserver?.Dispose();
+            resultActionsObserver.Dispose();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace MyProject.Director
         public async UniTask AfterEnterAsync(CancellationToken ct)
         {
             SubscribeView();
-            await UniTask.CompletedTask;
+            await StartGameAsync(ct);
         }
 
         public void Tick()
@@ -93,15 +93,24 @@ namespace MyProject.Director
 
         void SubscribeView()
         {
-            gameViewHub.ToSelectButtonClicked
+            gameViewHub.Quit
                 .Take(1)
                 .Subscribe(_ => sceneChangeRequest.OnNext(SceneType.Select))
                 .AddTo(disposables);
         }
 
+        async UniTask StartGameAsync(CancellationToken ct)
+        {
+            await gameViewHub.ShowStartGameAsync(ct);
+            gameSessionModel.Start();
+        }
+
         async UniTask HandleGameFinishedAsync(CancellationToken ct)
         {
-            await gameSessionModel.SaveAsync(ct);
+            await UniTask.WhenAll(
+                gameViewHub.ShowFinishGameAsync(ct),
+                gameSessionModel.SaveAsync(ct)
+            );
             sceneChangeRequest.OnNext(SceneType.Result);
         }
 

@@ -8,7 +8,7 @@ namespace MyProject.View
     [RequireComponent(typeof(ViewAnimationTimeline))]
     public class GameViewHub : SceneViewHubBase
     {
-        public Observable<Unit> ToSelectButtonClicked => toSelectButton.Clicked;
+        public Observable<Unit> Quit => toSelectButton.Clicked;
 
         [SerializeField] StandardButtonView toSelectButton;
 
@@ -39,9 +39,19 @@ namespace MyProject.View
             gameObject.SetActive(false);
         }
 
+        public async UniTask ShowStartGameAsync(CancellationToken ct)
+        {
+            await UniTask.CompletedTask;
+        }
+
+        public async UniTask ShowFinishGameAsync(CancellationToken ct)
+        {
+            await UniTask.CompletedTask;
+        }
+
         void OnDestroy()
         {
-            gameActionsObserver?.Dispose();
+            gameActionsObserver.Dispose();
         }
     }
 }
