@@ -7,7 +7,6 @@ namespace MyProject.View
 {
     public class RootViewHub : MonoBehaviour
     {
-        [SerializeField] ScrollBackgroundView scrollBackground;
         [SerializeField] StandardSliderView audioSlider;
         [SerializeField] AudioButtonView audioButton;
 
@@ -26,7 +25,6 @@ namespace MyProject.View
         {
             return UniTask.WhenAll
             (
-                scrollBackground.ShowAsync(ct),
                 audioSlider.ShowAsync(ct),
                 audioButton.ShowAsync(ct)
             );
@@ -34,7 +32,6 @@ namespace MyProject.View
 
         void InitializeViews()
         {
-            scrollBackground.Initialize();
             audioSlider.Initialize();
             audioButton.Initialize();
         }

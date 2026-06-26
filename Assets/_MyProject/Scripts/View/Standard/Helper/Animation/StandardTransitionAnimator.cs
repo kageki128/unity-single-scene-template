@@ -117,7 +117,15 @@ namespace MyProject.View
         public UniTask HideAsync(CancellationToken ct) =>
              PlayPhaseAsync(hideSettings, PhaseType.Hide, ct);
 
+        public void Show()
+        {
+            ApplyPhaseEnd(showSettings, PhaseType.Show);
+        }
 
+        public void Hide()
+        {
+            ApplyPhaseEnd(hideSettings, PhaseType.Hide);
+        }
 
         UniTask PlayPhaseAsync(PhaseSettings settings, PhaseType phaseType, CancellationToken ct)
         {
@@ -147,18 +155,47 @@ namespace MyProject.View
             return UniTask.WhenAll(tasks);
         }
 
+        void ApplyPhaseEnd(PhaseSettings settings, PhaseType phaseType)
+        {
+            CancelRunningMotions();
+
+            SetCurrentPosition(GetMoveTarget(settings.Move, phaseType));
+            transform.localRotation = GetRotationTarget(settings.Rotation, phaseType);
+            transform.localScale = GetScaleTarget(settings.Scale, phaseType);
+
+            if (!settings.Fade.IsFade)
+            {
+                return;
+            }
+
+            bool useCanvasGroup = settings.UseCanvasGroupForFade && selfCanvasGroupFadeTarget.IsAlive();
+            var fadeTargets = useCanvasGroup ? new List<FadeTarget> { selfCanvasGroupFadeTarget } : childFadeTargets;
+            ApplyFadeProgress(fadeTargets, 1f, phaseType);
+        }
+
         MotionHandle CreateMoveMotion(MoveSettings settings, PhaseType phaseType, float duration)
+        {
+            return LMotion.Create(GetMoveStart(settings, phaseType), GetMoveTarget(settings, phaseType), duration)
+                .WithEase(settings.Ease)
+                .Bind(SetCurrentPosition);
+        }
+
+        Vector3 GetMoveStart(MoveSettings settings, PhaseType phaseType)
+        {
+            return phaseType == PhaseType.Hide ? basePosition : GetMoveHiddenPosition(settings);
+        }
+
+        Vector3 GetMoveTarget(MoveSettings settings, PhaseType phaseType)
+        {
+            return phaseType == PhaseType.Hide ? GetMoveHiddenPosition(settings) : basePosition;
+        }
+
+        Vector3 GetMoveHiddenPosition(MoveSettings settings)
         {
             var radian = settings.AngleDegrees * Mathf.Deg2Rad;
             var direction = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0f);
             var offset = direction * settings.Distance;
-
-            var from = phaseType == PhaseType.Hide ? basePosition : basePosition + offset;
-            var to = phaseType == PhaseType.Hide ? basePosition + offset : basePosition;
-
-            return LMotion.Create(from, to, duration)
-                .WithEase(settings.Ease)
-                .Bind(SetCurrentPosition);
+            return basePosition + offset;
         }
 
         void SetCurrentPosition(Vector3 value)
@@ -182,23 +219,47 @@ namespace MyProject.View
 
         MotionHandle CreateRotationMotion(RotationSettings settings, PhaseType phaseType, float duration)
         {
-            var offset = Quaternion.Euler(0f, 0f, settings.AngleDegrees);
-            var startRotation = phaseType == PhaseType.Hide ? baseRotation : baseRotation * offset;
-            var targetRotation = phaseType == PhaseType.Hide ? baseRotation * offset : baseRotation;
-
-            return LMotion.Create(startRotation, targetRotation, duration)
+            return LMotion.Create(GetRotationStart(settings, phaseType), GetRotationTarget(settings, phaseType), duration)
                 .WithEase(settings.Ease)
                 .Bind(value => transform.localRotation = value);
         }
 
+        Quaternion GetRotationStart(RotationSettings settings, PhaseType phaseType)
+        {
+            return phaseType == PhaseType.Hide ? baseRotation : GetHiddenRotation(settings);
+        }
+
+        Quaternion GetRotationTarget(RotationSettings settings, PhaseType phaseType)
+        {
+            return phaseType == PhaseType.Hide ? GetHiddenRotation(settings) : baseRotation;
+        }
+
+        Quaternion GetHiddenRotation(RotationSettings settings)
+        {
+            var offset = Quaternion.Euler(0f, 0f, settings.AngleDegrees);
+            return baseRotation * offset;
+        }
+
         MotionHandle CreateScaleMotion(ScaleSettings settings, PhaseType phaseType, float duration)
         {
-            var startScale = phaseType == PhaseType.Hide ? baseScale : baseScale * settings.Multiplier;
-            var targetScale = phaseType == PhaseType.Hide ? baseScale * settings.Multiplier : baseScale;
-
-            return LMotion.Create(startScale, targetScale, duration)
+            return LMotion.Create(GetScaleStart(settings, phaseType), GetScaleTarget(settings, phaseType), duration)
                 .WithEase(settings.Ease)
                 .Bind(value => transform.localScale = value);
+        }
+
+        Vector3 GetScaleStart(ScaleSettings settings, PhaseType phaseType)
+        {
+            return phaseType == PhaseType.Hide ? baseScale : GetHiddenScale(settings);
+        }
+
+        Vector3 GetScaleTarget(ScaleSettings settings, PhaseType phaseType)
+        {
+            return phaseType == PhaseType.Hide ? GetHiddenScale(settings) : baseScale;
+        }
+
+        Vector3 GetHiddenScale(ScaleSettings settings)
+        {
+            return baseScale * settings.Multiplier;
         }
 
         void CancelRunningMotions()
@@ -324,4 +385,3 @@ namespace MyProject.View
         }
     }
 }
-

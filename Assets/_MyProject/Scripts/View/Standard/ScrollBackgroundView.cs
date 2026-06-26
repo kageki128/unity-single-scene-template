@@ -51,15 +51,25 @@ namespace MyProject.View
             gameObject.SetActive(false);
         }
 
-        public override UniTask ShowAsync(CancellationToken ct)
+        public override void Show()
         {
             gameObject.SetActive(true);
+        }
+
+        public override void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public override UniTask ShowAsync(CancellationToken ct)
+        {
+            Show();
             return UniTask.CompletedTask;
         }
 
         public override UniTask HideAsync(CancellationToken ct)
         {
-            gameObject.SetActive(false);
+            Hide();
             return UniTask.CompletedTask;
         }
 

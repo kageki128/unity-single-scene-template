@@ -27,12 +27,14 @@ namespace MyProject.View
         [Header("View Timelines")]
         [SerializeField] List<TimedViewAnimation> viewAnimations = new();
 
+        readonly List<TimedViewAnimation> validAnimations = new();
+
         Func<CancellationToken, UniTask> playShowTimelineAsync = _ => UniTask.CompletedTask;
         Func<CancellationToken, UniTask> playHideTimelineAsync = _ => UniTask.CompletedTask;
 
         public override void Initialize()
         {
-            var validAnimations = new List<TimedViewAnimation>(viewAnimations.Count);
+            validAnimations.Clear();
 
             foreach (var timedAnimation in viewAnimations)
             {
@@ -54,6 +56,22 @@ namespace MyProject.View
 
             playShowTimelineAsync = BuildTimelineTask(validAnimations, timed => timed.ShowStartSeconds, PlayShowAsync);
             playHideTimelineAsync = BuildTimelineTask(validAnimations, timed => timed.HideStartSeconds, PlayHideAsync);
+        }
+
+        public override void Show()
+        {
+            foreach (var timedAnimation in validAnimations)
+            {
+                timedAnimation.View.Show();
+            }
+        }
+
+        public override void Hide()
+        {
+            foreach (var timedAnimation in validAnimations)
+            {
+                timedAnimation.View.Hide();
+            }
         }
 
         /// <summary>
