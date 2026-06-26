@@ -10,9 +10,9 @@ namespace MyProject.Infrastructure
         const int BoardNum = 1;
         const ScoreboardWriteMode WriteMode = ScoreboardWriteMode.HighScoreDesc;
 
-        readonly IUnityroomApiClient unityroomApiClient;
+        readonly UnityroomApiClient unityroomApiClient;
 
-        public UnityroomRankingRegisterer(IUnityroomApiClient unityroomApiClient)
+        public UnityroomRankingRegisterer(UnityroomApiClient unityroomApiClient)
         {
             this.unityroomApiClient = unityroomApiClient;
         }

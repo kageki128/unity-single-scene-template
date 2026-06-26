@@ -15,7 +15,8 @@ namespace MyProject.Director
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
-            await rootViewHub.InitializeAsync(ct);
+            rootViewHub.Initialize();
+            await UniTask.CompletedTask;
         }
 
         public void Tick()

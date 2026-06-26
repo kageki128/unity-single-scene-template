@@ -14,7 +14,7 @@ namespace MyProject.View
 
         readonly List<ViewBase> views = new();
 
-        public async UniTask InitializeAsync(CancellationToken ct)
+        public void Initialize()
         {
             gameObject.SetActive(true);
 
@@ -22,10 +22,10 @@ namespace MyProject.View
             foreach (var view in views)
             {
                 view.Initialize();
+                view.Show();
             }
 
             BindAudioViews();
-            await UniTask.WhenAll(views.Select(view => view.ShowAsync(ct)));
         }
 
         void RegisterViews()
