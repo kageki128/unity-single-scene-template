@@ -35,6 +35,7 @@ namespace MyProject.CompositionRoot
         void RegisterModel(IContainerBuilder builder)
         {
             builder.Register<GameSessionModel>(Lifetime.Singleton);
+            builder.Register<ScoreModel>(Lifetime.Singleton);
             builder.RegisterInstance(gameConfig);
         }
 

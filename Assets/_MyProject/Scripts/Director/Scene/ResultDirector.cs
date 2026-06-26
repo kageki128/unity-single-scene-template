@@ -64,9 +64,10 @@ namespace MyProject.Director
         public void Dispose()
         {
             disposables.Dispose();
+            sceneChangeRequest.OnCompleted();
             sceneChangeRequest.Dispose();
+            sceneReloadRequest.OnCompleted();
             sceneReloadRequest.Dispose();
         }
-
     }
 }

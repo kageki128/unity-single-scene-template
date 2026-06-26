@@ -19,6 +19,7 @@ namespace MyProject.Director
         readonly GameViewHub gameViewHub;
 
         readonly CompositeDisposable disposables = new();
+        readonly CancellationTokenSource cts = new();
 
         public GameDirector(GameSessionModel gameSessionModel, GameViewHub gameViewHub)
         {
@@ -28,12 +29,15 @@ namespace MyProject.Director
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
+            gameSessionModel.Initialize();
             gameViewHub.Initialize();
             await UniTask.CompletedTask;
         }
 
         public async UniTask BeforeEnterAsync(CancellationToken ct)
         {
+            gameSessionModel.Initialize();
+            SubscribeModel();
             await UniTask.CompletedTask;
         }
 
@@ -45,10 +49,7 @@ namespace MyProject.Director
         public async UniTask AfterEnterAsync(CancellationToken ct)
         {
             disposables.Clear();
-            gameViewHub.ToSelectButtonClicked
-                .Take(1)
-                .Subscribe(_ => sceneChangeRequest.OnNext(SceneType.Select))
-                .AddTo(disposables);
+            SubscribeView();
             await UniTask.CompletedTask;
         }
 
@@ -69,10 +70,35 @@ namespace MyProject.Director
 
         public void Dispose()
         {
+            cts.Cancel();
+            cts.Dispose();
             disposables.Dispose();
+            sceneChangeRequest.OnCompleted();
             sceneChangeRequest.Dispose();
+            sceneReloadRequest.OnCompleted();
             sceneReloadRequest.Dispose();
         }
 
+        void SubscribeModel()
+        {
+            gameSessionModel.Finished
+                .Take(1)
+                .Subscribe(_ => HandleGameFinishedAsync(cts.Token).Forget())
+                .AddTo(disposables);
+        }
+
+        void SubscribeView()
+        {
+            gameViewHub.ToSelectButtonClicked
+                .Take(1)
+                .Subscribe(_ => sceneChangeRequest.OnNext(SceneType.Select))
+                .AddTo(disposables);
+        }
+
+        async UniTask HandleGameFinishedAsync(CancellationToken ct)
+        {
+            await gameSessionModel.SaveAsync(ct);
+            sceneChangeRequest.OnNext(SceneType.Result);
+        }
     }
 }
