@@ -38,9 +38,7 @@ namespace MyProject.Director
         public async UniTask BeforeEnterAsync(CancellationToken ct)
         {
             disposables.Clear();
-            cts?.Cancel();
-            cts?.Dispose();
-            cts = new CancellationTokenSource();
+            CreateCts(ct);
 
             gameSessionModel.Initialize();
             SubscribeModel();
@@ -65,9 +63,7 @@ namespace MyProject.Director
 
         public async UniTask BeforeExitAsync(CancellationToken ct)
         {
-            cts?.Cancel();
-            cts?.Dispose();
-            cts = null;
+            DisposeCts();
             disposables.Clear();
             await UniTask.CompletedTask;
         }
@@ -79,9 +75,7 @@ namespace MyProject.Director
 
         public void Dispose()
         {
-            cts?.Cancel();
-            cts?.Dispose();
-            cts = null;
+            DisposeCts();
             disposables.Dispose();
             sceneChangeRequest.OnCompleted();
             sceneChangeRequest.Dispose();
@@ -109,6 +103,19 @@ namespace MyProject.Director
         {
             await gameSessionModel.SaveAsync(ct);
             sceneChangeRequest.OnNext(SceneType.Result);
+        }
+
+        void CreateCts(CancellationToken ct)
+        {
+            DisposeCts();
+            cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+        }
+
+        void DisposeCts()
+        {
+            cts?.Cancel();
+            cts?.Dispose();
+            cts = null;
         }
     }
 }

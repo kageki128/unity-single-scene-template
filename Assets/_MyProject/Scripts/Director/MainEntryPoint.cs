@@ -16,7 +16,7 @@ namespace MyProject.Director
 
         readonly SemaphoreSlim sceneChangeSemaphore = new(1, 1);
         readonly CompositeDisposable disposables = new();
-        readonly CancellationTokenSource cts = new();
+        CancellationTokenSource cts;
         SceneType currentScene;
 
         public MainEntryPoint
@@ -39,8 +39,10 @@ namespace MyProject.Director
 
         public async UniTask StartAsync(CancellationToken ct)
         {
-            await rootDirector.InitializeAsync(ct);
-            await ResetSceneAsync(ct);
+            cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+
+            await rootDirector.InitializeAsync(cts.Token);
+            await ResetSceneAsync(cts.Token);
         }
 
         public void Tick()
@@ -54,8 +56,8 @@ namespace MyProject.Director
         public void Dispose()
         {
             disposables.Dispose();
-            cts.Cancel();
-            cts.Dispose();
+            cts?.Cancel();
+            cts?.Dispose();
             sceneChangeSemaphore.Dispose();
         }
 
@@ -99,29 +101,33 @@ namespace MyProject.Director
 
             var from = currentScene;
             currentScene = to;
-            ExecuteSceneTransitionAsync(from, to).Forget();
+            ExecuteSceneTransitionAsync(from, to, cts.Token).Forget();
         }
 
-        async UniTask ExecuteSceneTransitionAsync(SceneType from, SceneType to)
+        async UniTask ExecuteSceneTransitionAsync(SceneType from, SceneType to, CancellationToken ct)
         {
             var fromDirector = GetDirector(from);
             var toDirector = GetDirector(to);
 
             try
             {
-                await fromDirector.BeforeExitAsync(cts.Token);
-                await toDirector.BeforeEnterAsync(cts.Token);
+                await fromDirector.BeforeExitAsync(ct);
+                await toDirector.BeforeEnterAsync(ct);
                 await UniTask.WhenAll
                 (
-                    fromDirector.ExitAsync(cts.Token),
-                    toDirector.EnterAsync(cts.Token)
+                    fromDirector.ExitAsync(ct),
+                    toDirector.EnterAsync(ct)
                 );
-                await toDirector.AfterEnterAsync(cts.Token);
+                await toDirector.AfterEnterAsync(ct);
+            }
+            catch (OperationCanceledException) when (ct.IsCancellationRequested)
+            {
+                return;
             }
             catch (Exception ex)
             {
                 // シーンを初期化
-                await ResetSceneAsync(cts.Token);
+                await ResetSceneAsync(ct);
 
                 throw new InvalidOperationException($"Scene transition failed from {from} to {to}. Scene has been reset.", ex);
 

@@ -19,6 +19,8 @@ namespace MyProject.Infrastructure
 
         public UniTask RegisterAsync(RankingData rankingData, CancellationToken ct)
         {
+            ct.ThrowIfCancellationRequested();
+
             unityroomApiClient.SendScore(BoardNum, rankingData.Score, WriteMode);
 
             return UniTask.CompletedTask;
