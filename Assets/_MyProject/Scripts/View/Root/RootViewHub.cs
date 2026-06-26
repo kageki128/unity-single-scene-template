@@ -43,7 +43,7 @@ namespace MyProject.View
         {
             disposables.Clear();
 
-            var audioPlayer = AudioPlayer.Instance;
+            var audioPlayer = AudioPlayerView.Instance;
             var volume = audioPlayer.BgmVolume.CurrentValue;
 
             audioSlider.SetValue(volume);

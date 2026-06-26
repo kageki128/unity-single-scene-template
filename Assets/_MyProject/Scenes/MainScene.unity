@@ -2379,7 +2379,7 @@ GameObject:
   - component: {fileID: 1371877425}
   - component: {fileID: 1371877426}
   m_Layer: 0
-  m_Name: AudioPlayer
+  m_Name: AudioPlayerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2413,7 +2413,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcbae03c731faea4bba055adc514d93b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: MyProject.View::MyProject.View.AudioPlayer
+  m_EditorClassIdentifier: MyProject.View::MyProject.View.AudioPlayerView
   seAudioSource: {fileID: 1091782873}
   bgmAudioSource: {fileID: 341459405}
   audioMixer: {fileID: 24100000, guid: 8c41a9b04d5628a4d89801de06ba4650, type: 2}

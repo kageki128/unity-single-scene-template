@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using LitMotion;
-using ObservableCollections;
 using R3;
 using TMPro;
 using UnityEngine;

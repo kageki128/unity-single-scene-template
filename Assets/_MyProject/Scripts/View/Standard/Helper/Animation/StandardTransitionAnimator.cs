@@ -11,7 +11,6 @@ namespace MyProject.View
     [DisallowMultipleComponent]
     public class StandardTransitionAnimator : MonoBehaviour
     {
-
         [Serializable]
         class MoveSettings
         {
