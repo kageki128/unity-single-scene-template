@@ -10,8 +10,8 @@ namespace MyProject.View
     public class StandardSliderView : ViewBase
     {
         public Observable<float> ValueChanged => valueChanged;
-        public Observable<Unit> HandleClicked => handleClickObserver.Clicked.Select(_ => Unit.Default);
-        public Observable<Unit> HandleDoubleClicked => handleClickObserver.Clicked
+        public Observable<Unit> Clicked => handleClickObserver.Clicked.Select(_ => Unit.Default);
+        public Observable<Unit> DoubleClicked => handleClickObserver.Clicked
             .Where(pointerEventData => pointerEventData.clickCount == 2)
             .Select(_ => Unit.Default);
         readonly Subject<float> valueChanged = new();

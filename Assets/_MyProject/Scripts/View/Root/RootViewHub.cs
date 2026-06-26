@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using R3;
@@ -10,78 +12,49 @@ namespace MyProject.View
         [SerializeField] StandardSliderView audioSlider;
         [SerializeField] AudioButtonView audioButton;
 
-        readonly CompositeDisposable disposables = new();
+        readonly List<ViewBase> views = new();
 
         public async UniTask InitializeAsync(CancellationToken ct)
         {
             gameObject.SetActive(true);
 
-            InitializeViews();
+            RegisterViews();
+            foreach (var view in views)
+            {
+                view.Initialize();
+            }
+
             BindAudioViews();
-            await ShowAsync(ct);
+            await UniTask.WhenAll(views.Select(view => view.ShowAsync(ct)));
         }
 
-        UniTask ShowAsync(CancellationToken ct)
+        void RegisterViews()
         {
-            return UniTask.WhenAll
-            (
-                audioSlider.ShowAsync(ct),
-                audioButton.ShowAsync(ct)
-            );
-        }
-
-        void InitializeViews()
-        {
-            audioSlider.Initialize();
-            audioButton.Initialize();
+            views.Clear();
+            views.Add(audioSlider);
+            views.Add(audioButton);
         }
 
         void BindAudioViews()
         {
-            disposables.Clear();
-
             var audioPlayer = AudioPlayerView.Instance;
-            var volume = audioPlayer.BgmVolume.CurrentValue;
-
-            audioSlider.SetValue(volume);
-            audioButton.SetVolume(volume);
-            audioPlayer.SetBgmVolume(volume);
-            audioPlayer.SetSeVolume(volume);
 
             audioSlider.ValueChanged
-                .Subscribe(value =>
-                {
-                    audioPlayer.SetBgmVolume(value);
-                    audioPlayer.SetSeVolume(value);
-                })
-                .AddTo(disposables);
-            audioSlider.HandleDoubleClicked
-                .Subscribe(_ =>
-                {
-                    audioPlayer.ResetBgmVolume();
-                    audioPlayer.ResetSeVolume();
-                })
-                .AddTo(disposables);
+                .Subscribe(audioPlayer.SetVolume)
+                .AddTo(this);
+            audioSlider.DoubleClicked
+                .Subscribe(_ => audioPlayer.ResetVolume())
+                .AddTo(this);
             audioButton.VolumeRequested
-                .Subscribe(value =>
-                {
-                    audioPlayer.SetBgmVolume(value);
-                    audioPlayer.SetSeVolume(value);
-                })
-                .AddTo(disposables);
-
-            audioPlayer.BgmVolume
+                .Subscribe(audioPlayer.SetVolume)
+                .AddTo(this);
+            audioPlayer.Volume
                 .Subscribe(value =>
                 {
                     audioSlider.SetValue(value);
                     audioButton.SetVolume(value);
                 })
-                .AddTo(disposables);
-        }
-
-        void OnDestroy()
-        {
-            disposables.Dispose();
+                .AddTo(this);
         }
     }
 }

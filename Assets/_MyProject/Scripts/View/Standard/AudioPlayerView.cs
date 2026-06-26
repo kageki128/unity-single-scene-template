@@ -15,11 +15,8 @@ namespace MyProject.View
 
         public static AudioPlayerView Instance { get; private set; }
 
-        public ReadOnlyReactiveProperty<float> BgmVolume => bgmVolume;
-        readonly ReactiveProperty<float> bgmVolume = new(DefaultVolume);
-
-        public ReadOnlyReactiveProperty<float> SeVolume => seVolume;
-        readonly ReactiveProperty<float> seVolume = new(DefaultVolume);
+        public ReadOnlyReactiveProperty<float> Volume => volume;
+        readonly ReactiveProperty<float> volume = new(DefaultVolume);
 
         [Header("Audio Sources")]
         [SerializeField] AudioSource seAudioSource;
@@ -43,8 +40,7 @@ namespace MyProject.View
             }
 
             Instance = this;
-            SetBgmVolume(DefaultVolume);
-            SetSeVolume(DefaultVolume);
+            SetVolume(DefaultVolume);
         }
 
         void OnDestroy()
@@ -54,8 +50,7 @@ namespace MyProject.View
                 Instance = null;
             }
 
-            bgmVolume.Dispose();
-            seVolume.Dispose();
+            volume.Dispose();
         }
 
         public void PlayBgm(AudioClip clip, bool loop = true)
@@ -85,28 +80,18 @@ namespace MyProject.View
             bgmAudioSource.Stop();
         }
 
-        public void SetBgmVolume(float volume)
+        public void SetVolume(float volume)
         {
             var clamped = Mathf.Clamp(volume, MinVolume, MaxVolume);
-            bgmVolume.Value = clamped;
-            audioMixer.SetFloat(bgmVolumeParameter, ToDecibel(clamped));
-        }
+            this.volume.Value = clamped;
 
-        public void SetSeVolume(float volume)
-        {
-            var clamped = Mathf.Clamp(volume, MinVolume, MaxVolume);
-            seVolume.Value = clamped;
+            audioMixer.SetFloat(bgmVolumeParameter, ToDecibel(clamped));
             audioMixer.SetFloat(seVolumeParameter, ToDecibel(clamped));
         }
 
-        public void ResetBgmVolume()
+        public void ResetVolume()
         {
-            SetBgmVolume(DefaultVolume);
-        }
-
-        public void ResetSeVolume()
-        {
-            SetSeVolume(DefaultVolume);
+            SetVolume(DefaultVolume);
         }
 
         static float ToDecibel(float volume)
