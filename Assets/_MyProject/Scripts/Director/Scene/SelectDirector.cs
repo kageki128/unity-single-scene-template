@@ -32,6 +32,7 @@ namespace MyProject.Director
 
         public async UniTask BeforeEnterAsync(CancellationToken ct)
         {
+            disposables.Clear();
             await UniTask.CompletedTask;
         }
 
@@ -42,7 +43,6 @@ namespace MyProject.Director
 
         public async UniTask AfterEnterAsync(CancellationToken ct)
         {
-            disposables.Clear();
             await UniTask.CompletedTask;
         }
 
