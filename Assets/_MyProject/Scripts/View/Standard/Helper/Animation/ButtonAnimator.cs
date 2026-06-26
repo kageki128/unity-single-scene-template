@@ -48,7 +48,7 @@ namespace MyProject.View
             public float Duration { get; private set; } = 0.08f;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
 
             [field: SerializeField]
             public ColorRuleSettings SpriteColor { get; private set; } = new();
@@ -67,7 +67,7 @@ namespace MyProject.View
             public float Duration { get; private set; } = 0.06f;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
 
             [field: SerializeField]
             public ColorRuleSettings SpriteColor { get; private set; } = new();
@@ -86,7 +86,7 @@ namespace MyProject.View
             public float Duration { get; private set; } = 0.12f;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
         }
 
         [Header("References")]

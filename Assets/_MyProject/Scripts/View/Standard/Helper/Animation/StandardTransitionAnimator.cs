@@ -21,7 +21,7 @@ namespace MyProject.View
             public float AngleDegrees { get; private set; } = 0f;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
         }
 
         [Serializable]
@@ -31,7 +31,7 @@ namespace MyProject.View
             public float AngleDegrees { get; private set; } = 0f;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
         }
 
         [Serializable]
@@ -41,7 +41,7 @@ namespace MyProject.View
             public float Multiplier { get; private set; } = 1f;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
         }
 
         [Serializable]
@@ -51,7 +51,7 @@ namespace MyProject.View
             public bool IsFade { get; private set; } = true;
 
             [field: SerializeField]
-            public Ease Ease { get; private set; } = Ease.OutCubic;
+            public Ease Ease { get; private set; } = ViewAppearance.DefaultEase;
         }
 
         [Serializable]
