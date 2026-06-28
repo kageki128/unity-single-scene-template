@@ -19,8 +19,8 @@ namespace MyProject.View
         readonly ReactiveProperty<float> volume = new(DefaultVolume);
 
         [Header("Audio Sources")]
-        [SerializeField] AudioSource seAudioSource;
         [SerializeField] AudioSource bgmAudioSource;
+        [SerializeField] AudioSource seAudioSource;
 
         [Header("Audio Mixer")]
         [SerializeField] AudioMixer audioMixer;
