@@ -6,14 +6,14 @@ using UnityEngine.Audio;
 
 namespace MyProject.View
 {
-    public class AudioPlayerView : MonoBehaviour
+    public class AudioPlayer : MonoBehaviour
     {
         const float MinVolume = 0f;
         const float DefaultVolume = 0.5f;
         const float MaxVolume = 1f;
         const float MuteDecibel = -80f;
 
-        public static AudioPlayerView Instance { get; private set; }
+        public static AudioPlayer Instance { get; private set; }
 
         public ReadOnlyReactiveProperty<float> Volume => volume;
         readonly ReactiveProperty<float> volume = new(DefaultVolume);
@@ -36,7 +36,7 @@ namespace MyProject.View
         {
             if (Instance != null && Instance != this)
             {
-                throw new InvalidOperationException($"{nameof(AudioPlayerView)} already exists.");
+                throw new InvalidOperationException($"{nameof(AudioPlayer)} already exists.");
             }
 
             Instance = this;

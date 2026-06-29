@@ -32,18 +32,6 @@ namespace MyProject.View
             gameObject.SetActive(false);
         }
 
-        public override void Show()
-        {
-            gameObject.SetActive(true);
-            transitionAnimator.Show();
-        }
-
-        public override void Hide()
-        {
-            transitionAnimator.Hide();
-            gameObject.SetActive(false);
-        }
-
         public override async UniTask ShowAsync(CancellationToken ct)
         {
             gameObject.SetActive(true);
@@ -75,4 +63,3 @@ namespace MyProject.View
         }
     }
 }
-

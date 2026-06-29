@@ -58,22 +58,6 @@ namespace MyProject.View
             playHideTimelineAsync = BuildTimelineTask(validAnimations, timed => timed.HideStartSeconds, PlayHideAsync);
         }
 
-        public override void Show()
-        {
-            foreach (var timedAnimation in validAnimations)
-            {
-                timedAnimation.View.Show();
-            }
-        }
-
-        public override void Hide()
-        {
-            foreach (var timedAnimation in validAnimations)
-            {
-                timedAnimation.View.Hide();
-            }
-        }
-
         /// <summary>
         /// Show Timelineを再生する。
         /// </summary>

@@ -1,4 +1,3 @@
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using R3;
 using UnityEngine;
@@ -6,10 +5,8 @@ using UnityEngine.UI;
 
 namespace MyProject.View
 {
-    [RequireComponent(typeof(PointerEventObserver))]
-    [RequireComponent(typeof(ButtonAnimator))]
-    [RequireComponent(typeof(StandardTransitionAnimator))]
-    public class AudioButtonView : ViewBase
+    [RequireComponent(typeof(StandardButtonView))]
+    public class AudioButtonView : RootViewBase
     {
         public Observable<float> VolumeRequested => volumeRequested;
         readonly Subject<float> volumeRequested = new();
@@ -20,9 +17,8 @@ namespace MyProject.View
         [SerializeField] Sprite volumeOnIcon;
         [SerializeField] Sprite volumeOffIcon;
 
-        PointerEventObserver pointerEventObserver;
-        ButtonAnimator buttonAnimator;
-        StandardTransitionAnimator transitionAnimator;
+        StandardButtonView standardButton;
+
         float currentVolume;
         float? savedVolume;
 
@@ -31,45 +27,14 @@ namespace MyProject.View
             disposables.Clear();
             savedVolume = null;
 
-            pointerEventObserver = GetComponent<PointerEventObserver>();
-            buttonAnimator = GetComponent<ButtonAnimator>();
-            transitionAnimator = GetComponent<StandardTransitionAnimator>();
+            standardButton = GetComponent<StandardButtonView>();
+            standardButton.Initialize();
 
-            pointerEventObserver.Clicked
+            standardButton.Clicked
                 .Subscribe(_ => HandleClicked())
                 .AddTo(disposables);
 
-            transitionAnimator.Initialize();
-
-            gameObject.SetActive(false);
-        }
-
-        public override void Show()
-        {
-            gameObject.SetActive(true);
-            transitionAnimator.Show();
-            buttonAnimator.Play();
-        }
-
-        public override void Hide()
-        {
-            buttonAnimator.Stop();
-            transitionAnimator.Hide();
-            gameObject.SetActive(false);
-        }
-
-        public override async UniTask ShowAsync(CancellationToken ct)
-        {
-            gameObject.SetActive(true);
-            await transitionAnimator.ShowAsync(ct);
-            buttonAnimator.Play();
-        }
-
-        public override async UniTask HideAsync(CancellationToken ct)
-        {
-            buttonAnimator.Stop();
-            await transitionAnimator.HideAsync(ct);
-            gameObject.SetActive(false);
+            standardButton.ShowAsync(destroyCancellationToken).Forget();
         }
 
         public void SetVolume(float volume)
@@ -106,4 +71,3 @@ namespace MyProject.View
         }
     }
 }
-

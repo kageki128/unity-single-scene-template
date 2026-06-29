@@ -117,16 +117,6 @@ namespace MyProject.View
         public UniTask HideAsync(CancellationToken ct) =>
              PlayPhaseAsync(hideSettings, PhaseType.Hide, ct);
 
-        public void Show()
-        {
-            ApplyPhaseEnd(showSettings, PhaseType.Show);
-        }
-
-        public void Hide()
-        {
-            ApplyPhaseEnd(hideSettings, PhaseType.Hide);
-        }
-
         UniTask PlayPhaseAsync(PhaseSettings settings, PhaseType phaseType, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
@@ -153,24 +143,6 @@ namespace MyProject.View
             }
 
             return UniTask.WhenAll(tasks);
-        }
-
-        void ApplyPhaseEnd(PhaseSettings settings, PhaseType phaseType)
-        {
-            CancelRunningMotions();
-
-            SetCurrentPosition(GetMoveTarget(settings.Move, phaseType));
-            transform.localRotation = GetRotationTarget(settings.Rotation, phaseType);
-            transform.localScale = GetScaleTarget(settings.Scale, phaseType);
-
-            if (!settings.Fade.IsFade)
-            {
-                return;
-            }
-
-            bool useCanvasGroup = settings.UseCanvasGroupForFade && selfCanvasGroupFadeTarget.IsAlive();
-            var fadeTargets = useCanvasGroup ? new List<FadeTarget> { selfCanvasGroupFadeTarget } : childFadeTargets;
-            ApplyFadeProgress(fadeTargets, 1f, phaseType);
         }
 
         MotionHandle CreateMoveMotion(MoveSettings settings, PhaseType phaseType, float duration)

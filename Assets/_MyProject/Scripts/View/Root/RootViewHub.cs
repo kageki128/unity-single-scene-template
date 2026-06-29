@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using R3;
 using UnityEngine;
@@ -7,10 +6,10 @@ namespace MyProject.View
 {
     public class RootViewHub : MonoBehaviour
     {
-        [SerializeField] StandardSliderView audioSlider;
+        [SerializeField] AudioSliderView audioSlider;
         [SerializeField] AudioButtonView audioButton;
 
-        [SerializeField] ViewBase[] views;
+        [SerializeField] RootViewBase[] views;
 
         public void Initialize()
         {
@@ -19,7 +18,6 @@ namespace MyProject.View
             foreach (var view in views)
             {
                 view.Initialize();
-                view.Show();
             }
 
             BindAudioViews();
@@ -27,7 +25,7 @@ namespace MyProject.View
 
         void BindAudioViews()
         {
-            var audioPlayer = AudioPlayerView.Instance;
+            var audioPlayer = AudioPlayer.Instance;
 
             audioSlider.ValueChanged
                 .Subscribe(audioPlayer.SetVolume)

@@ -16,16 +16,6 @@ namespace MyProject.View
         public abstract void Initialize();
 
         /// <summary>
-        /// 表示処理
-        /// </summary>
-        public abstract void Show();
-
-        /// <summary>
-        /// 非表示処理
-        /// </summary>
-        public abstract void Hide();
-
-        /// <summary>
         /// アニメーション表示処理
         /// </summary>
         public abstract UniTask ShowAsync(CancellationToken ct);
