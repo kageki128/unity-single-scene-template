@@ -16,12 +16,12 @@ namespace MyProject.View
         public abstract void Initialize();
 
         /// <summary>
-        /// アニメーション表示処理
+        /// 表示処理
         /// </summary>
         public abstract UniTask ShowAsync(CancellationToken ct);
 
         /// <summary>
-        /// アニメーション非表示処理
+        /// 非表示処理
         /// </summary>
         public abstract UniTask HideAsync(CancellationToken ct);
     }
