@@ -77,7 +77,7 @@ made from [Unity Single Scene Template](https://github.com/kageki128/unity-singl
 
 ## アーキテクチャ
 
-ゲーム制作においてドメインとフレームワークを切り離すことが困難なことを考慮したアーキテクチャ。Pure C#のModelとMonoBehaviourのViewの両方でドメインを担当し、Directorがそれをオーケストレーションする。開発速度と保守性が両立でき、初学者にも分かりやすい。
+Pure C#のModelとMonoBehaviourのViewの両方でドメインを担当し、Directorがそれをオーケストレーションする。
 
 注意: ここにおいてPure C#なクラスとはMonoBehaviourを継承しないクラスと定義する。簡単のため、Pure C#であっても必要ならMathfやVector3などのUnityライブラリ、R3, UniTaskなどの外部ライブラリは使用しても構わない。
 
