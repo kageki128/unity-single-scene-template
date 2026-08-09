@@ -381,7 +381,7 @@
       "hash": "c4dea57e1c27567bac512e090a356b08abf83d0b"
     },
     "jp.hadashikick.vcontainer": {
-      "version": "1.18.0",
+      "version": "1.19.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
